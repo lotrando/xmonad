@@ -1,0 +1,81 @@
+!! Lotrando Xmonad Gentoo Desktop (c) 2021 -> ~/.Xresources
+
+XTerm*faceName: FiraCode Nerd Font
+XTerm*faceSize: 12
+
+!! URxvt Colorscheme
+
+*.foreground:    #ABB2BF
+*.background:    #0c1c29
+*.cursorColor:   #98C379
+*.highlightColor:#3A3F4B
+*.color0:        #1E2127
+*.color8:        #5C6370
+*.color1:        #E06C75
+*.color9:        #E06C75
+*.color2:        #98C379
+*.color10:       #98C379
+*.color3:        #D19A66
+*.color11:       #D19A66
+*.color4:        #61AFEF
+*.color12:       #61AFEF
+*.color5:        #C678DD
+*.color13:       #C678DD
+*.color6:        #56B6C2
+*.color14:       #56B6C2
+*.color7:        #ABB2BF
+*.color15:       #FFFFFF
+
+!! URxvt Appearance
+URxvt.perl-lib: /usr/lib64/urxvt/perl
+URxvt.keyboard-select.clipboard: true
+URxvt.allow_bold: true
+URxvt.font: xft:jetBrains Mono:style=semibold:pixelsize=16:antialias=true:hinting=true
+URxvt.boldFont: xft:jetBrains Mono:style=bold:pixelsize=16:antialias=true:hinting=true
+URxvt.italicFont: xft:jetBrains Mono:style=italic:pixelsize=16:antialias=true:hinting=true
+URxvt.transparent: false
+URxvt.shading: 30
+URxvt.letterSpace: 0
+URxvt.lineSpace: 0
+URxvt.geometry: 92x24
+URxvt.internalBorder: 6
+URxvt.scrollTtyOutput: false
+URxvt.scrollWithBuffer: true
+URxvt.scrollTtyKeypress: true
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.saveline: 8192
+URxvt.scrollBar: false
+URxvt.scrollBar_right: true
+URxvt.urgentOnBell: true
+URxvt.depth: 24
+URxvt.iso14755: false
+URxvt.fading: 20
+URxvt.fadeColor: #111111
+
+!! URxvt Common Keybinds for Navigations
+URxvt.keysym.S-Up: \033[1;5A
+URxvt.keysym.S-Down: \033[1;5B
+URxvt.keysym.S-Right: \033[1;5C
+URxvt.keysym.S-Left: \033[1;5D
+
+!! URxvt Copy Paste & Other Extensions
+URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select,font-size
+URxvt.copyCommand: xclip -i -selection clipboard
+URxvt.pasteCommand: xclip -o -selection clipboard
+
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keysym.M-u: perl:url-select:select_next
+
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.underlineURLs: true
+URxvt.urlButton: 1
+
+URxvt.keysym.C-Up:     perl:font-size:increase
+URxvt.keysym.C-Down:   perl:font-size:decrease
+URxvt.keysym.C-equal:  perl:font-size:reset
