@@ -101,7 +101,7 @@ rm make.conf && rm -R package.use && rm -R package.accept_keywords && rm -R pack
 
 ### Edit file - /etc/portage/make.conf 
 ```
-nano /make.conf
+nano make.conf
 ```
 ```
 # RXMD - Realist Xmonad Minimal Desktop
