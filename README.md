@@ -13,16 +13,16 @@
 parted -s /dev/sda mklabel gpt
 ```
 ```
-parted -a optimal /dev/sda
-```
-```
+parted -a optimal ${TARGET_DISK} << END
 unit mib
 mkpart primary fat32 1 150
 name 1 UEFI
 set 1 bios_grub on
 mkpart primary 150 -1
 name 2 ROOT
+p
 quit
+END
 ```
 
 ### Create Filesystems
