@@ -570,9 +570,17 @@ nano /etc/fstab
 ```
 ```
 sed -i 's/localhost/xmonad/g' /etc/conf.d/hostname
+```
+```
 sed -i 's/default8x16/ter-v16b/g' /etc/conf.d/consolefont
+```
+```
 sed -i 's/us/cs/g' /etc/conf.d/keymaps
+```
+```
 sed -i 's/127.0.0.1/#127.0.0.1/g' /etc/hosts
+```
+```
 echo "127.0.0.1 xmonad.gentoo.dev xmonad localhost" >> /etc/hosts
 ```
 ### Edit file - /etc/locale.gen
