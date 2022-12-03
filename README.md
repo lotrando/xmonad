@@ -117,7 +117,7 @@ FFLAGS="${COMMON_FLAGS}"
 MAKE_OPTS="-j6"
 
 GENTOO_MIRRORS="https://mirror.dkm.cz/gentoo/"
-PORTAGE_BINHOST="http://78.45.232.18:55/xmonad/xmonad"
+PORTAGE_BINHOST="http://78.45.232.18:55/xmonad"
 PORTDIR="/var/db/repos/gentoo"
 DISTDIR="/var/cache/distfiles"
 PKGDIR="/var/cache/binpkgs"
