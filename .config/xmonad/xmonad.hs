@@ -1,4 +1,4 @@
--- Lotrando Xmonad Gentoo Desktop (c) 2021 -> ~/.xmonad/xmonad.hs
+-- Realist Xmonad Gentoo Desktop (c) 2021 -> ~/.xmonad/xmonad.hs
 
  -- Base
 import XMonad
@@ -81,7 +81,7 @@ import XMonad.Util.SpawnOnce
 -- VARIABLES --
 
 -- Set Ubuntu as default font
-myFont = "xft:Oswald:weight=bold:pixelsize=11:antialias=true:hinting=true"
+myFont = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:hinting=true"
 -- Sets Windows / Super key for Master key
 myModMask = mod4Mask
 -- Sets Alt key for use in Xprompts
@@ -117,7 +117,7 @@ myXPConfig = def
   , fgHLight            = "#000000"
   , borderColor         = "#81a2be"
   , promptBorderWidth   = 1
-  , position            = Top -- CenteredAt { xpCenterY = 0.3, xpWidth = 0.3 }
+  , position            = CenteredAt { xpCenterY = 0.3, xpWidth = 0.3 }
   , height              = 32
   , historySize         = 0
   , historyFilter       = id
@@ -176,17 +176,6 @@ myLayoutHook = avoidStruts
                                            ||| grid
 
 myWorkspaces = [" SYS ", " WWW ", " DEV ", " PHP ", " CODE ", " VBOX ", " MUS ", " MPV ", " GFX "]
--- myWorkspaces =
---         " <fn=3>\xf8a3</fn> " :
---         " <fn=3>\xf8a6</fn> " :
---         " <fn=3>\xf8a9</fn> " :
---         " <fn=3>\xf8ac</fn> " :
---         " <fn=3>\xf8af</fn> " :
---         " <fn=3>\xf8b2</fn> " :
---         " <fn=3>\xf8b5</fn> " :
---         " <fn=3>\xf8b8</fn> " :
---         " <fn=3>\xf8bb</fn> " :
---         []
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..]
 clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
     where i = fromJust $ M.lookup ws myWorkspaceIndices
