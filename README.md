@@ -1,12 +1,14 @@
 # Gentoo Xmonad Web Developer Desktop by Realist
 
 ## Keybinding of Xmonad
-```
-  -- Xmonad Restart                         - (Win+Shift+r)
-  -- Xmonad Quit                            - (Win+Shift+q)
-  -- Kill focused window                    - (Win+Shift+c)
-  -- Kill all windows on current workspace  - (Win+Shift+a)
+|Keys  	     |Function  	                              |
+|---	       |---	                                      |
+|Win+Shift+r |Xmonad Restart  	                        |
+|Win+Shift+q |Xmonad Quit  	                            |
+|Win+Shift+c |Kill focused window  	                    |
+|Win+Shift+a |Kill all windows on current workspace  	  |
 
+```
   -- Rofi Drun      - (Win+Shift+Enter)
   -- Rofi Powermenu - (Win+Shift+p)
   -- Rofi Apps      - (Win+Shift+Backspace)
