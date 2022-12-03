@@ -671,7 +671,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /usr/share/zs
 nano /etc/default/grub
 ```
 ```
-GRUB_GFXMODE=$GRUB_GFX_MODE
+GRUB_GFXMODE=1920x1080x32
 GRUB_GFXPAYLOAD_LINUX=keep
 GRUB_BACKGROUND="/boot/grub/grub.png"
 GRUB_DISABLE_OS_PROBER=0
