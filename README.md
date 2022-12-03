@@ -27,22 +27,13 @@ END
 
 ### Create Filesystems
 ```
-mkfs.fat -n UEFI -F32 /dev/sda1
+mkfs.fat -n UEFI -F32 /dev/sda1 && mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/sda2
 ```
 ```
-mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/sda2
+mkdir -p /mnt/gentoo && mount -t f2fs /dev/sda2 /mnt/gentoo
 ```
 ```
-mkdir -p /mnt/gentoo
-```
-```
-mount -t f2fs /dev/sda2 /mnt/gentoo
-```
-```
-mkdir -p /mnt/gentoo/boot
-```
-```
-mount /dev/sda1 /mnt/gentoo/boot
+mkdir -p /mnt/gentoo/boot && mount /dev/sda1 /mnt/gentoo/boot
 ```
 
 ### Download stage3 and config portage
