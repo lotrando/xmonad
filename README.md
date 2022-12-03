@@ -1,5 +1,50 @@
 # Gentoo Xmonad Perfect Web Developer Desktop by Realist
 
+## Keybinding of Xmonad
+```
+  -- Xmonad Restarts - (Win+Shift+r)
+  -- Xmonad Quit - (Win+Shift+q)
+  -- Kill the currently focused client - (Win+Shift+c)
+  -- Kill all windows on current workspace - (Win+Shift+a)
+  -- Rofi DRUN Prompt - (Win+Shift+Enter)
+  -- Rofi Powermenu - (Win+Shift+p)
+  -- Rofi Apps - (Win+Shift+Backspace)
+  -- Run myTerminal - (Win+<Enter>)
+  -- Run myBrowser - (Win+Alt+f)
+  -- Run myEditor - (Win+Alt+e)
+  -- Run Pcmanfm - (Win+Alt+t)
+  -- Run Btop - (Win+Alt+h)
+  -- Run Pulsemixer (Win+Alt+m)
+  -- Switch to next layout - ("M-<Tab>")
+  -- Toggles noborder/full - ("M-<Space>")
+  -- Toggles noborder - ("M-S-n")
+  -- Shrink horiz window width - ("M-h")
+  -- Expand horiz window width - ("M-l")
+  -- Shrink vert window width - ("M-M1-j")
+  -- Exoand vert window width - ("M-M1-k")
+  -- Switch focus to next monitor - ("M-.")
+  -- Switch focus to prev monitor - ("M-,")
+  -- Shifts focused window to next Workspace - ("M-S-<Right>")
+  -- Shifts focused window to prev Workspace - ("M-S-<Left>")
+  -- Toggles my 'floats' layout - ("M-f")
+  -- Push floating window back to tile - ("M-t")
+  -- Push ALL floating windows to tile - ("M-S-t")
+  -- Decrease window spacing - ("M-d")
+  -- Increase window spacing - ("M-i")
+  -- Decrease screen spacing - ("M-S-d")
+  -- Increase screen spacing - ("M-S-i")
+  -- Move focus to the master window - ("M-m")
+  -- Move focus to the next window - ("M-j")
+  -- Move focus to the prev window - ("M-k")
+  -- Swap the focused window and the master window - ("M-S-m")
+  -- Swap focused window with next window - ("M-S-j")
+  -- Swap focused window with prev window - ("M-S-k")
+  -- Moves focused window to master, others maintain order - ("M-<Backspace>")
+  -- Rotate all windows except master and keep focus in place - ("M-S-<Tab>")
+  -- Rotate all the windows in the current stack - ("M-C-<Tab>")
+  -- Search prompt Google - (Win+S and g)
+```
+
 ## Grub background by Realist
 <img src="grub-screen.png" alt="grub" />
 
