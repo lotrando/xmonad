@@ -1,4 +1,4 @@
-# Gentoo Xmonad Perfect Web Developer Desktop by Realist
+# Gentoo Xmonad Web Developer Desktop by Realist
 
 ## Keybinding of Xmonad
 ```
