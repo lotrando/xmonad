@@ -637,9 +637,15 @@ echo "root:<PASSWORD>" | chpasswd -c SHA256
 echo "user:<PASSWORD>" | chpasswd -c SHA256
 ```
 ## Compiling phase 
-### Create kernel
+### Choose and create kernel
 ```
 emerge -g genkernel linux-firmware zen-sources && genkernel all
+```
+```
+emerge -g linux-firmware gentoo-sources genkernel && genkernel all
+```
+```
+emerge -g linux-firmware && emerge -g gentoo-kernel-bin
 ```
 ### Install important system packages 
 ```
