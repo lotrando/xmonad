@@ -1,7 +1,7 @@
 # Gentoo Xmonad Perfect Web Developer Desktop by Realist
 
 ## Selfmade Grub background
-<img src="grub.png" alt="grub" />
+<img src="grub-screen.png" alt="grub" />
 
 ## Final desktop screenshot
 <img src="xmonad-screen.png" alt="xmonad-screen" />
