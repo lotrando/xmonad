@@ -6,10 +6,10 @@
 ## Step 1 - Partitions
 
 ```
-# parted -s /dev/sd1 mklabel gpt
+# parted -s /dev/sda mklabel gpt
 ```
 ```
-# parted -a optimal /dev/sd1
+# parted -a optimal /dev/sda
 ```
 ```
 unit mib
@@ -36,9 +36,9 @@ quit
 ```
 # cd /mnt/gentoo
 
-# wget https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20221127T170156Z/stage3-amd64-openrc-20221127T170156Z.tar.xz
+# wget https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/****/stage3-amd64-openrc-****.tar.xz
 
-# tar xpf stage3-amd64-openrc-20221127T170156Z.tar.xz --xattrs-include='*.*' --numeric-owner
+# tar xpf stage3-amd64-openrc-****.tar.xz --xattrs-include='*.*' --numeric-owner
 
 # mkdir -p /mnt/gentoo/var/db/repos/gentoo
 
