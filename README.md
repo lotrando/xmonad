@@ -1,15 +1,19 @@
-# Xmonad Perfect Desktop on Gentoo Linux
+# Gentoo Xmonad Perfect Web Developer Desktop by Realist
 
+## Selfmade Grub background
 <img src="grub-screen.png" alt="grub" />
+
+## Final desktop screenshot
 <img src="xmonad-screen.png" alt="xmonad" />
 
-## Step 1 - Partitions
+## Create install environment
 
+### Prepare disk
 ```
-# parted -s /dev/sda mklabel gpt
+parted -s /dev/sda mklabel gpt
 ```
 ```
-# parted -a optimal /dev/sda
+parted -a optimal /dev/sda
 ```
 ```
 unit mib
@@ -21,67 +25,84 @@ name 2 ROOT
 quit
 ```
 
-## Step 2 - Filesystems
+### Create Filesystems
 ```
-# mkfs.fat -n UEFI -F32 /dev/sda1
-# mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/sda2
-```
-```
-# mkdir -p /mnt/gentoo
-# mount -t f2fs /dev/sda2 /mnt/gentoo
-# mkdir -p /mnt/gentoo/boot
-# mount /dev/sda1 /mnt/gentoo/boot
-```
-## Step 3 - Stage3 & Portage Install
-```
-# cd /mnt/gentoo
-
-# wget https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/****/stage3-amd64-openrc-****.tar.xz
-
-# tar xpf stage3-amd64-openrc-****.tar.xz --xattrs-include='*.*' --numeric-owner
-
-# mkdir -p /mnt/gentoo/var/db/repos/gentoo
-
-# mkdir -p /mnt/gentoo/etc/portage/repos.conf
-
-# cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/
-
-# cp /etc/resolv.conf /mnt/gentoo/etc/
-```
-## Step 4 - Mounting system FS
-```
-# mount -t proc none /mnt/gentoo/proc
-# mount -t sysfs none /mnt/gentoo/sys
-
-# mount --rbind /sys /mnt/gentoo/sys
-# mount --make-rslave /mnt/gentoo/sys
-
-# mount --rbind /dev /mnt/gentoo/dev
-# mount --make-rslave /mnt/gentoo/dev
-
-# mount --rbind /run /mnt/gentoo/run
-# mount --make-rslave /mnt/gentoo/run
+mkfs.fat -n UEFI -F32 /dev/sda1
 ```
 ```
-# test -L /dev/shm && rm /dev/shm && mkdir /dev/shm
-# mount --types tmpfs --options nosuid,nodev,noexec shm /dev/shm
-# chmod 1777 /dev/shm
+mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/sda2
+```
+```
+mkdir -p /mnt/gentoo
+```
+```
+mount -t f2fs /dev/sda2 /mnt/gentoo
+```
+```
+mkdir -p /mnt/gentoo/boot
+```
+```
+mount /dev/sda1 /mnt/gentoo/boot
 ```
 
-## Step 5 - Chroot
+### Download stage3 and config portage
 ```
-# chroot /mnt/gentoo /bin/bash
-# env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
-
-# emerge-webrsync
-
-# cd /etc/portage/
-# rm make.conf
-# rm -R package.use
-# rm -R package.accept_keywords
-# rm -R package.mask
+cd /mnt/gentoo
 ```
-`# nano /make.conf`
+```
+wget https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20221127T170156Z/stage3-amd64-openrc-20221127T170156Z.tar.xz
+```
+```
+tar xpf stage3-amd64-openrc-20221127T170156Z.tar.xz --xattrs-include='*.*' --numeric-owner
+```
+```
+mkdir -p /mnt/gentoo/var/db/repos/gentoo && mkdir -p /mnt/gentoo/etc/portage/repos.conf
+```
+```
+cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/
+```
+```
+cp /etc/resolv.conf /mnt/gentoo/etc/
+```
+### Mounting important system FS
+```
+mount -t proc none /mnt/gentoo/proc && mount -t sysfs none /mnt/gentoo/sys
+```
+```
+mount --rbind /sys /mnt/gentoo/sys && mount --make-rslave /mnt/gentoo/sys
+```
+```
+mount --rbind /dev /mnt/gentoo/dev && mount --make-rslave /mnt/gentoo/dev
+```
+```
+mount --rbind /run /mnt/gentoo/run && mount --make-rslave /mnt/gentoo/run
+```
+```
+test -L /dev/shm && rm /dev/shm && mkdir /dev/shm
+```
+```
+mount --types tmpfs --options nosuid,nodev,noexec shm /dev/shm && chmod 1777 /dev/shm
+```
+
+### Chroot to prepared system
+```
+chroot /mnt/gentoo /bin/bash && env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
+```
+### Sync and config portage
+```
+emerge-webrsync
+```
+```
+cd /etc/portage/
+```
+```
+rm make.conf && rm -R package.use && rm -R package.accept_keywords && rm -R package.mask
+```
+
+### Edit file - /etc/portage/make.conf 
+```
+nano /make.conf
+```
 ```
 # RXMD - Realist Xmonad Minimal Desktop
 # make.conf file (c) 2022 -> /etc/portage/make.conf
@@ -96,13 +117,13 @@ FFLAGS="${COMMON_FLAGS}"
 MAKE_OPTS="-j6"
 
 GENTOO_MIRRORS="https://mirror.dkm.cz/gentoo/"
-PORTAGE_BINHOST="http://78.45.232.18:55/xmonad"
+PORTAGE_BINHOST="http://78.45.232.18:55/xmonad/xmonad"
 PORTDIR="/var/db/repos/gentoo"
 DISTDIR="/var/cache/distfiles"
 PKGDIR="/var/cache/binpkgs"
 PORTAGE_NICENESS=19
 PORTAGE_IONICE_COMMAND="ionice -c 3 -p \${PID}"
-EMERGE_DEFAULT_OPTS="-v --ask-enter-invalid --jobs=6 --load-average=4"
+EMERGE_DEFAULT_OPTS="-v --ask-enter-invalid --jobs=4 --load-average=4"
 FEATURES="pkgdir-index-trusted binpkg-logs buildpkg cgroup collision-protect downgrade-backup parallel-fetch sign"
 
 ACCEPT_KEYWORDS="amd64"
@@ -116,7 +137,10 @@ L10N="cs"
 INPUT_DEVICES="libinput"
 VIDEO_CARDS="nouveau vmware"
 ```
-`# nano package.accept_keywords`
+### Edit file - /etc/portage/package.accept_keywords
+```
+nano package.accept_keywords 
+```
 ```
 # RXMD - Realist Xmonad Minimal Desktop
 # package.accept_keywords file -> /etc/portage/package.accept_keywords
@@ -415,7 +439,10 @@ x11-themes/notify-osd-icons ~amd64
 x11-wm/xmonad ~amd64
 x11-wm/xmonad-contrib ~amd64
 ```
-`# nano package.use`
+### Edit file - /etc/portage/package.use
+```
+nano package.use
+```
 ```
 # Realist Xmonad Minimal Desktop
 # package.use file -> /etc/portage/package.use
@@ -505,7 +532,10 @@ x11-libs/motif xft
 # X11-MISC
 x11-misc/xmobar wifi xft xpm
 ```
-`# nano package.license`
+### Edit file - /etc/portage/package.license
+```
+nano package.license
+```
 ```
 # RXMD - Realist Xmonad Minimal Desktop
 # package.license file -> /etc/portage/package.license
@@ -517,87 +547,124 @@ app-editors/vscode Microsoft-vscode
 # SYS-KERNEL
 sys-kernel/linux-firmware linux-fw-redistributable no-source-code
 ```
-`# nano package.mask`
+### Edit file - /etc/portage/package.mask
+```
+nano package.mask
+```
 ```
 # RXMD - Realist Xmonad Minimal Desktop
 # package.mask file -> /etc/portage/package.mask
 
-// any masked package //
+# // some custom masked package //
 ```
 ```
-# sed -i 's/UTC/local/g' /etc/conf.d/hwclock
+sed -i 's/UTC/local/g' /etc/conf.d/hwclock
 ```
-`# nano /etc/fstab`
+### Edit file - /etc/fstab
+```
+nano /etc/fstab
+```
 ```
 /dev/sda1   /boot   vfat    noatime       0 2
 /dev/sda2   /       f2fs    defaults,rw   0 0
 ```
 ```
-# sed -i 's/localhost/xmonad/g' /etc/conf.d/hostname
-# sed -i 's/default8x16/ter-v16b/g' /etc/conf.d/consolefont
-# sed -i 's/us/cs/g' /etc/conf.d/keymaps
-
-# sed -i 's/127.0.0.1/#127.0.0.1/g' /etc/hosts
-# echo "127.0.0.1 xmonad.gentoo.dev xmonad localhost" >> /etc/hosts
+sed -i 's/localhost/xmonad/g' /etc/conf.d/hostname
+sed -i 's/default8x16/ter-v16b/g' /etc/conf.d/consolefont
+sed -i 's/us/cs/g' /etc/conf.d/keymaps
+sed -i 's/127.0.0.1/#127.0.0.1/g' /etc/hosts
+echo "127.0.0.1 xmonad.gentoo.dev xmonad localhost" >> /etc/hosts
 ```
-`# nano /etc/locale.gen`
+### Edit file - /etc/locale.gen
+```
+nano /etc/locale.gen
+```
 ```
 cs_CZ.UTF-8 UTF-8
 cs_CZ ISO-8859-2
 ```
-
-`# nano /etc/env.d/02locale`
+### Edit file - /etc/env.d/02locale
+```
+nano /etc/env.d/02locale
+```
 ```
 LANG="cs_CZ.UTF-8"
 LC_COLLATE="C"
 ```
 ```
-# locale-gen
-# echo "Europe/Prague" > /etc/timezone
-# eselect locale set 7
-# env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
+echo "Europe/Prague" > /etc/timezone
 ```
-`# nano /etc/conf.d/net`
+### Create locale
+```
+locale-gen
+```
+```
+eselect locale set 7
+```
+```
+env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
+```
+### Edit file - /etc/conf.d/net
+```
+nano /etc/conf.d/net
+```
 ```
 config_enp0s3="192.168.0.30 netmask 255.255.255.0"
 routes_enp0s3="default via 192.168.0.1"
 ```
 ```
-# cd /etc/init.d/
-# ln -s net.lo net.enp0s3
+cd /etc/init.d/
 ```
 ```
-# useradd -m -G audio,video,usb,cdrom,portage,users,wheel -s /bin/bash user
-# echo "root:<password>" | chpasswd -c SHA256
-# echo "user:<password>" | chpasswd -c SHA256
+ln -s net.lo net.enp0s3
 ```
-## Step 6 - Install kernel and packages 
+### Create user (replace <USER> and <PASSWORD> with custom variables)
 ```
-# emerge -g genkernel linux-firmware zen-sources && genkernel all
+useradd -m -G audio,video,usb,cdrom,portage,users,wheel -s /bin/bash <USER>
 ```
 ```
-# emerge -g dhcpcd grub usbutils terminus-font sudo f2fs-tools app-misc/mc ranger dev-vcs/git python oh-my-zsh gentoo-zsh-completions zsh-completions exa alsa-utils lsof htop neofetch eix gentoolkit clang rust --noreplace nano 
+echo "root:<PASSWORD>" | chpasswd -c SHA256
 ```
 ```
-# emerge -g xmonad xmonad-contrib xmobar imagemagick ueberzug ubuntu-font-family numlockx trayer-srg setxkbmap volumeicon xdotool lxrandr xorg-server lxappearance lxmenu-data gnome-themes-standard rxvt-unicode urxvt-perls elementary-xfce-icon-theme notify-osd picom rofi qt5ct adwaita-qt nitrogen nm-applet pcmanfm xprop i3lock pipewire xsetroot roboto file-roller ristretto tumbler firefox mpv audacious pulsemixer btop youtube-viewer 
+echo "user:<PASSWORD>" | chpasswd -c SHA256
+```
+## Compiling phase 
+### Create kernel
+```
+emerge -g genkernel linux-firmware zen-sources && genkernel all
+```
+### Install important system packages 
+```
+emerge -g dhcpcd grub usbutils terminus-font sudo f2fs-tools app-misc/mc ranger dev-vcs/git python oh-my-zsh gentoo-zsh-completions zsh-completions exa alsa-utils lsof htop neofetch eix gentoolkit clang rust --noreplace nano 
+```
+### Install important desktop packages 
+```
+emerge -g xmonad xmonad-contrib xmobar imagemagick ueberzug ubuntu-font-family numlockx trayer-srg setxkbmap volumeicon xdotool lxrandr xorg-server lxappearance lxmenu-data gnome-themes-standard rxvt-unicode urxvt-perls elementary-xfce-icon-theme notify-osd picom rofi qt5ct adwaita-qt nitrogen nm-applet pcmanfm xprop i3lock pipewire xsetroot roboto file-roller ristretto tumbler firefox mpv audacious pulsemixer btop youtube-viewer 
+```
+### Install web developers packages 
+```
+emerge -g phpmyadmin dev-db/mysql =dev-lang/php-8.1.12 =dev-lang/php-7.4.33 nodejs composer vscode sublime-text
+```
+### Set PHP version for CLI and APACHE 
+```
+eselect php set cli php7.4 && eselect php set apache2 php7.4
+```
+### Install oh-my-zsh plugins and theme
+```
+git clone https://github.com/romkatv/powerlevel10k.git /usr/share/zsh/site-contrib/oh-my-zsh/custom/themes/powerlevel10k
 ```
 ```
-# emerge -g phpmyadmin dev-db/mysql =dev-lang/php-8.1.12 =dev-lang/php-7.4.33 nodejs composer vscode sublime-text
+git clone https://github.com/zsh-users/zsh-autosuggestions.git /usr/share/zsh/site-contrib/oh-my-zsh/custom/plugins/zsh-autosuggestions
 ```
 ```
-# git clone https://github.com/romkatv/powerlevel10k.git /usr/share/zsh/site-contrib/oh-my-zsh/custom/themes/powerlevel10k
-# git clone https://github.com/zsh-users/zsh-autosuggestions.git /usr/share/zsh/site-contrib/oh-my-zsh/custom/plugins/zsh-autosuggestions
-# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /usr/share/zsh/site-contrib/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /usr/share/zsh/site-contrib/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 ```
+
+## Configurations
+### Grub
 ```
-# eselect php set cli php7.4
-# eselect php set apache2 php7.4
+nano /etc/default/grub
 ```
-```
-# emerge -gUNDu @world
-```
-## Step 7 - Install Bootloader
-`nano /etc/default/grub`
 ```
 GRUB_GFXMODE=$GRUB_GFX_MODE
 GRUB_GFXPAYLOAD_LINUX=keep
@@ -607,97 +674,161 @@ GRUB_DEFAULT=0
 GRUB_TIMEOUT=5
 ```
 
-## Step 8 - Sudo Config and Dotfiles
+### Sudo
 ```
-# sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
+sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 ```
+### USER - dotfiles setting
 ```
-# cd /home/<user>
-# rm .bashrc
-# wget -q http://78.45.232.18:55/dotfiles.zip
-# unzip -oq dotfiles.zip
-# chown -R <user>:<user> /home/<user>/
-# cd i3lock-fancy
-# make install
+cd /home/<USER>
 ```
 ```
-# cd /root
-# wget -q http://78.45.232.18:55/root_dotfiles.zip
-# unzip -oq root_dotfiles.zip
-# chown -R root:root /root
+rm .bashrc
 ```
 ```
-# cd /usr
-# wget -q http://78.45.232.18:55/usr.zip
-# unzip -oq usr.zip
+wget -q http://78.45.232.18:55/xmonad/dotfiles.zip
 ```
 ```
-# chsh -s /bin/zsh root
-# chsh -s /bin/zsh <user>
+unzip -oq dotfiles.zip
 ```
-## Step 9 - Grub Install
 ```
-# grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=XMONAD --recheck /dev/sda
+chown -R <USER>:<USER> /home/<USER>/
+```
+```
+cd i3lock-fancy
+```
+```
+make install
+```
+### ROOT - dotfiles setting
+```
+cd /root
+```
+```
+wget -q http://78.45.232.18:55/xmonad/root_dotfiles.zip
+```
+```
+unzip -oq root_dotfiles.zip
+```
+```
+chown -R root:root /root
+```
+### System Wallpapers and Audacious Nucleo Skin
+```
+cd /usr
+```
+```
+wget -q http://78.45.232.18:55/xmonad/usr.zip
+```
+```
+unzip -oq usr.zip
+```
+### Change default shell to OH-MY-ZSH
+```
+chsh -s /bin/zsh root
+```
+```
+chsh -s /bin/zsh <USER>
+```
+### Grub Install
+```
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=XMONAD --recheck /dev/sda
+```
+```
+cd /boot/grub && wget -q http://78.45.232.18:55/xmonad/grub.png
+```
+```
+grub-mkconfig -o /boot/grub/grub.cfg
+```
 
-# cd /boot/grub && wget -q http://78.45.232.18:55/grub.png
-
-# grub-mkconfig -o /boot/grub/grub.cfg
+### Config WEB Develop enviroment PHP, APACHE, MYSQL, PHPMYADMIN
 ```
-
-## Step 10 - PHP APACHE MYSQL PHPMYADMIN Config
+rm -R /usr/lib/tmpfiles.d/mysql.conf
 ```
-# rm -R /usr/lib/tmpfiles.d/mysql.conf
 ```
-`nano /usr/lib/tmpfiles.d/mysql.conf`
+nano /usr/lib/tmpfiles.d/mysql.conf
+```
 ```
 d /run/mysqld 0755 mysql mysql -
 ```
 ```
-# sed -i 's/SSL_DEFAULT_VHOST/PHP/g' /etc/conf.d/apache2
+sed -i 's/SSL_DEFAULT_VHOST/PHP/g' /etc/conf.d/apache2
 ```
 ```
-# echo "ServerName localhost" >> /etc/apache2/httpd.conf
-# rm -R /var/www/localhost/htdocs/index.html
-
-# echo "<?php phpinfo(); ?>" > /var/www/localhost/htdocs/index.php
-
-# cp /var/www/localhost/htdocs/phpmyadmin/config.sample.inc.php /var/www/localhost/htdocs/phpmyadmin/config.inc.php
-
-# mkdir /var/www/localhost/htdocs/phpmyadmin/tmp/
+echo "ServerName localhost" >> /etc/apache2/httpd.conf
 ```
 ```
-# chown -R apache:apache /var/www/
-# usermod -aG apache <user>
+rm -R /var/www/localhost/htdocs/index.html
 ```
 ```
-# chmod -R 775 /var/www/localhost/htdocs
-# chmod -R 777 /var/www/localhost/htdocs/phpmyadmin/tmp
+echo "<?php phpinfo(); ?>" > /var/www/localhost/htdocs/index.php
 ```
-### Blowfish secret
-`nano /var/www/localhost/htdocs/phpmyadmin/config.inc.php`
+```
+cp /var/www/localhost/htdocs/phpmyadmin/config.sample.inc.php /var/www/localhost/htdocs/phpmyadmin/config.inc.php
+```
+```
+mkdir /var/www/localhost/htdocs/phpmyadmin/tmp/
+```
+```
+chown -R apache:apache /var/www/ && usermod -aG apache <USER>
+```
+```
+chmod -R 775 /var/www/localhost/htdocs
+```
+```
+chmod -R 777 /var/www/localhost/htdocs/phpmyadmin/tmp
+```
+### Add Blowfish secret to phpmyadmin
+```
+nano /var/www/localhost/htdocs/phpmyadmin/config.inc.php
+```
 ```
 $cfg['blowfish_secret'] = 'WntN0150l71sLq/{w4V0:ZXFv7WcB-Qz'; 
 ```
-## Step 11 - Run daemons
+### Mysql root password
 ```
-# rc-update add elogind boot
-# rc-update add consolefont default
-# rc-update add numlock default
-# rc-update add sshd default
-# rc-update add dbus default
-# rc-update add alsasound default
-# rc-update add dhcpcd default
-# rc-update add apache2 default
-# rc-update add mysql default
-# alsactl store
+emerge --config mysql
 ```
-## Step 12 - Cleaning
+### Run daemons
 ```
-# rm -R /usr/usr.zip
-# rm -R /root/root_dotfiles.zip
-# rm -R /root/gentoo-chroot.sh
+rc-update add elogind boot
 ```
-## Step 13 - Mysql root password config
 ```
-# emerge --config mysql
+rc-update add consolefont default
+```
+```
+rc-update add numlock default
+```
+```
+rc-update add sshd default
+```
+```
+rc-update add dbus default
+```
+```
+rc-update add alsasound default
+```
+```
+rc-update add dhcpcd default
+```
+```
+rc-update add apache2 default
+```
+```
+rc-update add mysql default
+```
+```
+rc-update add NetworkManager default
+```
+### Store volume
+```
+alsactl store
+```
+### Cleaning
+```
+rm -R /home/<USER>/dotfiles.zip && rm -R /usr/usr.zip && rm -R /root/root_dotfiles.zip
+```
+### Reboot to Created Xmonad Desktop
+```
+umount -R /mnt/gentoo && reboot
 ```
