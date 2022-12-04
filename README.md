@@ -702,6 +702,9 @@ chown -R realist:realist /home/realist/
 ```
 cd i3lock-fancy && make install
 ```
+```
+sed -i 's/interface/enp0s3/g' /home/$GENTOO_USER/.config/xmobar/xmobarrc0
+```
 ### ROOT - dotfiles setting
 ```
 cd /root && wget -q http://78.45.232.18:55/xmonad/root_dotfiles.zip && unzip -oq root_dotfiles.zip
