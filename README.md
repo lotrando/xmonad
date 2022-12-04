@@ -858,7 +858,7 @@ umount -R /mnt/gentoo && reboot
 |Win-Ctrl-Tab         |Rotate all the windows in the current stack                  |
 |Win-Shift and g      |Search prompt Google                                         |
 
-# All installed packages
+# Complete system with stage3 is 835 packages
 ```
 [I] acct-group/apache
      Available versions:  0-r2{xpak}
