@@ -1,51 +1,46 @@
 # Gentoo Xmonad Web Developer Desktop by Realist
 
 ## Keybinding of Xmonad
-|Keys  	     |Function  	                              |
-|---	       |---	                                      |
-|Win+Shift+r |Xmonad Restart  	                        |
-|Win+Shift+q |Xmonad Quit  	                            |
-|Win+Shift+c |Kill focused window  	                    |
-|Win+Shift+a |Kill all windows on current workspace  	  |
+|Keys  	              |Function  	                                |
+|---	                |---	                                      |
+|Win-Shift-Enter      |Rofi Drun                                  |
+|Win-Shift-Backspace  |Rofi Apps                                  |
+|Win-Shift-p          |Rofi Powermenu                             |
+|Win-Shift-r          |Xmonad Restart  	                          |
+|Win-Shift-q          |Xmonad Quit  	                            |
+|Win-Shift-c          |Kill focused window  	                    |
+|Win-Shift-a          |Kill all windows on current workspace  	  |
+|Win-Enter            |Run URxvt                                  |
+|Win-Alt-b            |Run Firefox                                |
+|Win-Alt-e            |Run Sublime                                |   
+|Win-Alt-f            |Run Pcmanfm                                |      
+|Win-Alt-t            |Run Btop                                   |
+|Win-Alt-m            |Run Pulsemixer                             |
+|Win-d                |Decrease window spacing                    | 
+|Win-i                |Increase window spacing                    | 
+|Win-Shift-d          |Decrease screen spacing                    | 
+|Win-Shift-i          |Increase screen spacing                    |
+|Win-h                |Shrink horiz window width                  |
+|Win-l                |Expand horiz window width                  |
+|Win-Alt-j            |Shrink vert window width                   |
+|Win-Alt-k            |Expand vert window width                   |
+|Win-m                |Move focus to the master window            |
+|Win-j                |Move focus to the next window              |
+|Win-k                |Move focus to the prev window              |
+|Win-.                |Switch focus to next monitor               |
+|Win-,                |Switch focus to prev monitor               |
+|Win-Shift-Right      |Shifts focused window to next Workspace    |
+|Win-Shift-Left       |Shifts focused window to prev Workspace    |
+|Win-Shift and g      |Search prompt Google                       |
 
 ```
-  -- Rofi Drun      - (Win+Shift+Enter)
-  -- Rofi Powermenu - (Win+Shift+p)
-  -- Rofi Apps      - (Win+Shift+Backspace)
-
-  -- Run URxvt      - (Win+Enter)
-  -- Run Firefox    - (Win+Alt+b)
-  -- Run Sublime    - (Win+Alt+e)
-  -- Run Pcmanfm    - (Win+Alt+f)
-  -- Run Btop       - (Win+Alt+t)
-  -- Run Pulsemixer - (Win+Alt+m)
-
   -- Switch to next layout  - ("Win-<Tab>")
   -- Toggles noborder/full  - ("Win-<Space>")
   -- Toggles noborder       - ("Win-S-n")
 
-  -- Shrink horiz window width  - ("Win-h")
-  -- Expand horiz window width  - ("Win-l")
-  -- Shrink vert window width   - ("Win-Alt-j")
-  -- Exoand vert window width   - ("Win-Alt-k")
-
-  -- Switch focus to next monitor - ("Win-.")
-  -- Switch focus to prev monitor - ("Win-,")
-  -- Shifts focused window to next Workspace - ("Win-Shift-<Right>")
-  -- Shifts focused window to prev Workspace - ("Win-Shift-<Left>")
-
   -- Toggles my 'floats' layout         - ("Win-f")
   -- Push floating window back to tile  - ("Win-t")
   -- Push ALL floating windows to tile  - ("Win-Shift-t")
-
-  -- Decrease window spacing - ("Win-d")
-  -- Increase window spacing - ("Win-i")
-  -- Decrease screen spacing - ("Win-Shift-d")
-  -- Increase screen spacing - ("Win-Shift-i")
-
-  -- Move focus to the master window  - ("Win-m")
-  -- Move focus to the next window    - ("Win-j")
-  -- Move focus to the prev window    - ("Win-k")
 
   -- Swap the focused window and the master window  - ("Win-Shift-m")
   -- Swap focused window with next window           - ("Win-Shift-j")
@@ -54,7 +49,6 @@
   -- Moves focused window to master, others maintain order    - ("Win-<Backspace>")
   -- Rotate all windows except master and keep focus in place - ("Win-Shift-<Tab>")
   -- Rotate all the windows in the current stack              - ("Win-Ctrl-<Tab>")
-  -- Search prompt Google                                     - (Win+Shift and g)
 ```
 
 ## Grub background by Realist
