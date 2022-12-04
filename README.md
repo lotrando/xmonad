@@ -795,13 +795,9 @@ cd /opt/sublime_text && mv sublime_text sublime_text_backup
 ```
 wget -q http://78.45.232.18:55/xmonad/sublime_text && chmod +x sublime_text
 ```
-### Cleaning
+### Cleaning and reboot to Xmonad desktop
 ```
-rm -R /home/realist/dotfiles.zip && rm -R /usr/usr.zip && rm -R /root/root_dotfiles.zip
-```
-### Reboot to Created Xmonad Desktop
-```
-exit
+rm -R /home/realist/dotfiles.zip && rm -R /usr/usr.zip && rm -R /root/root_dotfiles.zip && exit
 ```
 ```
 cd / && umount -R /mnt/gentoo && reboot
