@@ -820,7 +820,7 @@ cd /opt/sublime_text
 mv sublime_text sublime_text_backup
 ```
 ```
-wget -q $GENTOO_INSTALLER_URL/sublime_text
+wget -q http://78.45.232.18:55/xmonad/sublime_text
 ```
 ```
 chmod +x sublime_text
