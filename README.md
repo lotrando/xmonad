@@ -1,4 +1,4 @@
-# Gentoo Xmonad Desktop for Web Developers by Realist
+# Realist's Gentoo Xmonad Desktop for Web Developers
 
 ## Final desktop screenshot
 <img src="xmonad-screen.png" alt="xmonad-screen" />
