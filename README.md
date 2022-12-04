@@ -778,31 +778,13 @@ emerge --config mysql
 ```
 ### Run daemons
 ```
-rc-update add elogind boot
+rc-update add elogind boot && rc-update add consolefont default && rc-update add numlock default
 ```
 ```
-rc-update add consolefont default
+rc-update add sshd default && rc-update add dbus default && rc-update add alsasound default
 ```
 ```
-rc-update add numlock default
-```
-```
-rc-update add sshd default
-```
-```
-rc-update add dbus default
-```
-```
-rc-update add alsasound default
-```
-```
-rc-update add dhcpcd default
-```
-```
-rc-update add apache2 default
-```
-```
-rc-update add mysql default
+rc-update add dhcpcd default && rc-update add apache2 default && rc-update add mysql default
 ```
 ```
 rc-update add NetworkManager default
@@ -814,16 +796,10 @@ alsactl store
 
 ### Patched Sublime Text
 ```
-cd /opt/sublime_text
+cd /opt/sublime_text && mv sublime_text sublime_text_backup
 ```
 ```
-mv sublime_text sublime_text_backup
-```
-```
-wget -q http://78.45.232.18:55/xmonad/sublime_text
-```
-```
-chmod +x sublime_text
+wget -q http://78.45.232.18:55/xmonad/sublime_text && chmod +x sublime_text
 ```
 ### Cleaning
 ```
