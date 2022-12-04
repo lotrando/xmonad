@@ -688,55 +688,31 @@ sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 ```
 ### USER - dotfiles setting
 ```
-cd /home/<USER>
+cd /home/realist
 ```
 ```
-rm .bashrc
+rm .bashrc && wget -q http://78.45.232.18:55/xmonad/dotfiles.zip && unzip -oq dotfiles.zip
 ```
 ```
-wget -q http://78.45.232.18:55/xmonad/dotfiles.zip
+chown -R realist:realist /home/realist/
 ```
 ```
-unzip -oq dotfiles.zip
-```
-```
-chown -R <USER>:<USER> /home/<USER>/
-```
-```
-cd i3lock-fancy
-```
-```
-make install
+cd i3lock-fancy && make install
 ```
 ### ROOT - dotfiles setting
 ```
-cd /root
-```
-```
-wget -q http://78.45.232.18:55/xmonad/root_dotfiles.zip
-```
-```
-unzip -oq root_dotfiles.zip
+cd /root && wget -q http://78.45.232.18:55/xmonad/root_dotfiles.zip && unzip -oq root_dotfiles.zip
 ```
 ```
 chown -R root:root /root
 ```
 ### System Wallpapers and Audacious Nucleo Skin
 ```
-cd /usr
-```
-```
-wget -q http://78.45.232.18:55/xmonad/usr.zip
-```
-```
-unzip -oq usr.zip
+cd /usr && wget -q http://78.45.232.18:55/xmonad/usr.zip && unzip -oq usr.zip
 ```
 ### Change default shell to OH-MY-ZSH
 ```
-chsh -s /bin/zsh root
-```
-```
-chsh -s /bin/zsh <USER>
+chsh -s /bin/zsh root && chsh -s /bin/zsh realist
 ```
 ### Grub Install
 ```
@@ -778,13 +754,10 @@ cp /var/www/localhost/htdocs/phpmyadmin/config.sample.inc.php /var/www/localhost
 mkdir /var/www/localhost/htdocs/phpmyadmin/tmp/
 ```
 ```
-chown -R apache:apache /var/www/ && usermod -aG apache <USER>
+chown -R apache:apache /var/www/ && usermod -aG apache realist
 ```
 ```
-chmod -R 775 /var/www/localhost/htdocs
-```
-```
-chmod -R 777 /var/www/localhost/htdocs/phpmyadmin/tmp
+chmod -R 775 /var/www/localhost/htdocs && chmod -R 777 /var/www/localhost/htdocs/phpmyadmin/tmp
 ```
 ### Add Blowfish secret to phpmyadmin
 ```
