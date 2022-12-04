@@ -482,7 +482,7 @@ gnome-base/gvfs cdda http udisks nfs archive
 media-fonts/terminus-font -ru-g
 
 # MEDIA-GFX
-media-gfx/imagemagick djvu lzma raw svg truetype zip
+media-gfx/imagemagick djvu lzma raw svg truetype zip xml
 
 # MEDIA-LIBS
 media-libs/audiofile flac
