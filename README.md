@@ -13,7 +13,7 @@
 parted -s /dev/sda mklabel gpt
 ```
 ```
-parted -a optimal ${TARGET_DISK} << END
+parted -a optimal /dev/sda << END
 unit mib
 mkpart primary fat32 1 150
 name 1 UEFI
@@ -620,9 +620,9 @@ cd /etc/init.d/
 ```
 ln -s net.lo net.enp0s3
 ```
-### Create user (replace <USER> and <PASSWORD> with custom variables)
+### Create user (replace realist and toor with custom user and password)
 ```
-useradd -m -G audio,video,usb,cdrom,portage,users,wheel -s /bin/bash <USER>
+useradd -m -G audio,video,usb,cdrom,portage,users,wheel -s /bin/bash realist
 ```
 ```
 echo "root:<PASSWORD>" | chpasswd -c SHA256
@@ -807,7 +807,7 @@ alsactl store
 ```
 ### Cleaning
 ```
-rm -R /home/<USER>/dotfiles.zip && rm -R /usr/usr.zip && rm -R /root/root_dotfiles.zip
+rm -R /home/realist/dotfiles.zip && rm -R /usr/usr.zip && rm -R /root/root_dotfiles.zip
 ```
 ### Reboot to Created Xmonad Desktop
 ```
