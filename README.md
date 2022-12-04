@@ -1,14 +1,14 @@
 # Gentoo Xmonad Web Developer Desktop by Realist
 
-## Grub background by Realist
-<img src="grub-screen.png" alt="grub" />
-
 ## Final desktop screenshot
 <img src="xmonad-screen.png" alt="xmonad-screen" />
 
+## Grub background
+<img src="grub-screen.png" alt="grub" />
+
 ## Create install environment
 
-### Prepare disk
+### Partitions
 ```
 parted -s /dev/sda mklabel gpt
 ```
@@ -25,7 +25,7 @@ quit
 END
 ```
 
-### Create Filesystems
+### Filesystems
 ```
 mkfs.fat -n UEFI -F32 /dev/sda1 && mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/sda2
 ```
@@ -36,7 +36,7 @@ mkdir -p /mnt/gentoo && mount -t f2fs /dev/sda2 /mnt/gentoo
 mkdir -p /mnt/gentoo/boot && mount /dev/sda1 /mnt/gentoo/boot
 ```
 
-### Download stage3 and config portage
+### Stage3 and config portage
 ```
 cd /mnt/gentoo
 ```
