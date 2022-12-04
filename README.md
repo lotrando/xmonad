@@ -811,6 +811,20 @@ rc-update add NetworkManager default
 ```
 alsactl store
 ```
+
+### Patched Sublime Text
+```
+cd /opt/sublime_text
+```
+```
+mv sublime_text sublime_text_backup
+```
+```
+wget -q $GENTOO_INSTALLER_URL/sublime_text
+```
+```
+chmod +x sublime_text
+```
 ### Cleaning
 ```
 rm -R /home/realist/dotfiles.zip && rm -R /usr/usr.zip && rm -R /root/root_dotfiles.zip
