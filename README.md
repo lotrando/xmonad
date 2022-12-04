@@ -625,10 +625,10 @@ ln -s net.lo net.enp0s3
 useradd -m -G audio,video,usb,cdrom,portage,users,wheel -s /bin/bash realist
 ```
 ```
-echo "root:<PASSWORD>" | chpasswd -c SHA256
+echo "root:toor" | chpasswd -c SHA256
 ```
 ```
-echo "user:<PASSWORD>" | chpasswd -c SHA256
+echo "realist:toor" | chpasswd -c SHA256
 ```
 ## Compiling phase 
 ### Choose and create kernel
