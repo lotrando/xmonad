@@ -1,5 +1,5 @@
 # Complete system packages
-include stage3 is 835 packages plus kernel-bin, gentoo sources and zen sources
+590 installed packages. 838 packages include stage3 and kernel-bin, gentoo sources and zen sources
 ```
 [I] acct-group/apache
      Available versions:  0-r2{xpak}
