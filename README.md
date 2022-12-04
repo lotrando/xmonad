@@ -736,10 +736,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 rm -R /usr/lib/tmpfiles.d/mysql.conf
 ```
 ```
-nano /usr/lib/tmpfiles.d/mysql.conf
-```
-```
-d /run/mysqld 0755 mysql mysql -
+echo "d /run/mysqld 0755 mysql mysql -" > /usr/lib/tmpfiles.d/mysql.conf
 ```
 ```
 sed -i 's/SSL_DEFAULT_VHOST/PHP/g' /etc/conf.d/apache2
@@ -748,10 +745,7 @@ sed -i 's/SSL_DEFAULT_VHOST/PHP/g' /etc/conf.d/apache2
 echo "ServerName localhost" >> /etc/apache2/httpd.conf
 ```
 ```
-rm -R /var/www/localhost/htdocs/index.html
-```
-```
-echo "<?php phpinfo(); ?>" > /var/www/localhost/htdocs/index.php
+rm -R /var/www/localhost/htdocs/index.html && echo "<?php phpinfo(); ?>" > /var/www/localhost/htdocs/index.php
 ```
 ```
 cp /var/www/localhost/htdocs/phpmyadmin/config.sample.inc.php /var/www/localhost/htdocs/phpmyadmin/config.inc.php
@@ -784,7 +778,7 @@ rc-update add elogind boot && rc-update add consolefont default && rc-update add
 rc-update add sshd default && rc-update add dbus default && rc-update add alsasound default
 ```
 ```
-rc-update add dhcpcd default && rc-update add apache2 default && rc-update add mysql default
+rc-update add net.enp0s3 default && rc-update add dhcpcd default && rc-update add apache2 default && rc-update add mysql default
 ```
 ```
 rc-update add NetworkManager default
@@ -807,7 +801,10 @@ rm -R /home/realist/dotfiles.zip && rm -R /usr/usr.zip && rm -R /root/root_dotfi
 ```
 ### Reboot to Created Xmonad Desktop
 ```
-umount -R /mnt/gentoo && reboot
+exit
+```
+```
+cd / && umount -R /mnt/gentoo && reboot
 ```
 # Keybinding of Xmonad desktop
 |Keys                 |Function                                                     |
