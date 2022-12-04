@@ -838,7 +838,7 @@ cd / && umount -R /mnt/gentoo && reboot
 |Win-Shift-t          |Push ALL floating windows to tile                            |
 |Win-Tab              |Switch to next layout                                        |
 |Win-Space            |Toggles noborder/full                                        |
-|Win-S-n              |Toggles noborder                                             |
+|Win-Shift-n              |Toggles noborder                                             |
 |Win-Shift-m          |Swap the focused window and the master window                |
 |Win-Shift-j          |Swap focused window with next window                         |
 |Win-Shift-k          |Swap focused window with prev window                         |
