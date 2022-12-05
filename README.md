@@ -44,10 +44,10 @@ mkdir -p /mnt/gentoo/boot && mount /dev/sda1 /mnt/gentoo/boot
 cd /mnt/gentoo
 ```
 ```
-wget https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20221204T163153Z/stage3-amd64-openrc-20221204T163153Z.tar.xz
+wget https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20221205T133149Z/stage3-amd64-openrc-20221205T133149Z.tar.xz
 ```
 ```
-tar xpf stage3-amd64-openrc-20221204T163153Z.tar.xz --xattrs-include='*.*' --numeric-owner
+tar xpf stage3-amd64-openrc-20221205T133149Z.tar.xz --xattrs-include='*.*' --numeric-owner
 ```
 ```
 mkdir -p /mnt/gentoo/var/db/repos/gentoo && mkdir -p /mnt/gentoo/etc/portage/repos.conf
