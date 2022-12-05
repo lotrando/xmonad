@@ -634,15 +634,16 @@ echo "root:toor" | chpasswd -c SHA256
 echo "realist:toor" | chpasswd -c SHA256
 ```
 ## Compiling phase 
-### Choose and create kernel
+### Create kernel
 ```
 emerge -g genkernel linux-firmware zen-sources && genkernel all
 ```
+### Binary secure version of gentoo sources but no pipewire and multimedia
 ```
-emerge -g linux-firmware gentoo-sources genkernel && genkernel all
+emerge -g autoconf linux-firmware
 ```
 ```
-emerge -g linux-firmware && emerge -g gentoo-kernel-bin
+emerge -g gentoo-kernel-bin
 ```
 ### Install important system packages 
 ```
