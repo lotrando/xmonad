@@ -13,10 +13,10 @@ This project contains complete installation commands and config files for create
 
 ### Partitions
 ```
-parted -s /dev/sda mklabel gpt
+parted -s /dev/nvme0n1 mklabel gpt
 ```
 ```
-parted -a optimal /dev/sda << END
+parted -a optimal /dev/nvme0n1 << END
 unit mib
 mkpart primary fat32 1 150
 name 1 UEFI
@@ -30,13 +30,13 @@ END
 
 ### Filesystems
 ```
-mkfs.fat -n UEFI -F32 /dev/sda1 && mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/sda2
+mkfs.fat -n UEFI -F32 /dev/nvme0n1p1 && mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/nvme0n1p2
 ```
 ```
-mkdir -p /mnt/gentoo && mount -t f2fs /dev/sda2 /mnt/gentoo
+mkdir -p /mnt/gentoo && mount -t f2fs /dev/nvme0n1p2 /mnt/gentoo
 ```
 ```
-mkdir -p /mnt/gentoo/boot && mount /dev/sda1 /mnt/gentoo/boot
+mkdir -p /mnt/gentoo/boot && mount /dev/nvme0n1p1 /mnt/gentoo/boot
 ```
 
 ### Stage3 and config portage
@@ -108,7 +108,7 @@ CFLAGS="${COMMON_FLAGS}"
 CXXFLAGS="${COMMON_FLAGS}"
 FCFLAGS="${COMMON_FLAGS}"
 FFLAGS="${COMMON_FLAGS}"
-MAKE_OPTS="-j6"
+MAKE_OPTS="-j8"
 
 GENTOO_MIRRORS="https://mirror.dkm.cz/gentoo/"
 PORTAGE_BINHOST="http://78.45.232.18:55/xmonad"
@@ -129,7 +129,7 @@ LC_MESSAGES=C
 L10N="cs"
 
 INPUT_DEVICES="libinput"
-VIDEO_CARDS="nouveau vmware"
+VIDEO_CARDS="nouveau"
 ```
 ### Edit file - /etc/portage/package.accept_keywords
 ```
@@ -562,8 +562,8 @@ sed -i 's/UTC/local/g' /etc/conf.d/hwclock
 nano /etc/fstab
 ```
 ```
-/dev/sda1   /boot   vfat    noatime       0 2
-/dev/sda2   /       f2fs    defaults,rw   0 0
+/dev/nvme0n1p1   /boot   vfat    noatime       0 2
+/dev/nvme0n1p2   /       f2fs    defaults,rw   0 0
 ```
 ```
 sed -i 's/localhost/xmonad/g' /etc/conf.d/hostname
@@ -726,7 +726,7 @@ chsh -s /bin/zsh root && chsh -s /bin/zsh realist
 ```
 ### Grub Install
 ```
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=XMONAD --recheck /dev/sda
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=XMONAD --recheck /dev/nvme0n1
 ```
 ```
 cd /boot/grub && wget -q http://78.45.232.18:55/xmonad/grub.png
@@ -782,7 +782,10 @@ rc-update add elogind boot && rc-update add consolefont default && rc-update add
 rc-update add sshd default && rc-update add dbus default && rc-update add alsasound default
 ```
 ```
-rc-update add net.enp0s3 default && rc-update add dhcpcd default && rc-update add apache2 default && rc-update add mysql default
+rc-update add net.enp0s3 default && rc-update add dhcpcd default
+```
+```
+rc-update add apache2 default && rc-update add mysql default
 ```
 ```
 rc-update add NetworkManager default
