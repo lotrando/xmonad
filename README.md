@@ -111,7 +111,7 @@ FFLAGS="${COMMON_FLAGS}"
 MAKE_OPTS="-j8"
 
 GENTOO_MIRRORS="https://mirror.dkm.cz/gentoo/"
-PORTAGE_BINHOST="http://78.45.232.18:55/xmonad"
+PORTAGE_BINHOST="http://94.113.203.183:55/xmonad"
 PORTDIR="/var/db/repos/gentoo"
 DISTDIR="/var/cache/distfiles"
 PKGDIR="/var/cache/binpkgs"
@@ -698,7 +698,7 @@ sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 cd /home/realist
 ```
 ```
-rm .bashrc && wget -q http://78.45.232.18:55/xmonad/dotfiles.zip && unzip -oq dotfiles.zip
+rm .bashrc && wget -q http://94.113.203.183:55/xmonad/dotfiles.zip && unzip -oq dotfiles.zip
 ```
 ```
 chown -R realist:realist /home/realist/
@@ -711,14 +711,14 @@ sed -i 's/interface/enp0s3/g' /home/realist/.config/xmobar/xmobarrc0
 ```
 ### ROOT - dotfiles setting
 ```
-cd /root && wget -q http://78.45.232.18:55/xmonad/root_dotfiles.zip && unzip -oq root_dotfiles.zip
+cd /root && wget -q http://94.113.203.183:55/xmonad/root_dotfiles.zip && unzip -oq root_dotfiles.zip
 ```
 ```
 chown -R root:root /root
 ```
 ### System Wallpapers and Audacious Nucleo Skin
 ```
-cd /usr && wget -q http://78.45.232.18:55/xmonad/usr.zip && unzip -oq usr.zip
+cd /usr && wget -q http://94.113.203.183:55/xmonad/usr.zip && unzip -oq usr.zip
 ```
 ### Change default shell to OH-MY-ZSH
 ```
@@ -729,7 +729,7 @@ chsh -s /bin/zsh root && chsh -s /bin/zsh realist
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=XMONAD --recheck /dev/nvme0n1
 ```
 ```
-cd /boot/grub && wget -q http://78.45.232.18:55/xmonad/grub.png
+cd /boot/grub && wget -q http://94.113.203.183:55/xmonad/grub.png
 ```
 ```
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -800,7 +800,7 @@ alsactl store
 cd /opt/sublime_text && mv sublime_text sublime_text_backup
 ```
 ```
-wget -q http://78.45.232.18:55/xmonad/sublime_text && chmod +x sublime_text
+wget -q http://94.113.203.183:55/xmonad/sublime_text && chmod +x sublime_text
 ```
 ### Cleaning and reboot to Xmonad desktop
 ```
@@ -845,7 +845,7 @@ cd / && umount -R /mnt/gentoo && reboot
 |Win-Shift-t          |Push ALL floating windows to tile                            |
 |Win-Tab              |Switch to next layout                                        |
 |Win-Space            |Toggles noborder/full                                        |
-|Win-Shift-n              |Toggles noborder                                             |
+|Win-Shift-n          |Toggles noborder                                             |
 |Win-Shift-m          |Swap the focused window and the master window                |
 |Win-Shift-j          |Swap focused window with next window                         |
 |Win-Shift-k          |Swap focused window with prev window                         |
