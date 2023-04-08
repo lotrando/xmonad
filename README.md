@@ -1,7 +1,7 @@
-# Realist's Gentoo Xmonad Desktop for Web Developers
+# Lotrando's Xmonad Desktop for Web Developers [LXMD] on Gentoo Linux
 
 ## About this project
-This project contains complete installation commands and config files for create gentoo linux with xmonad desktop for developers.
+This project contains complete installation commands and config files for create gentoo linux with Xmonad desktop for Web Developers.
 
 ## Final desktop screenshot
 <img src="xmonad-screen.png" alt="xmonad-screen" />
