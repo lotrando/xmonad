@@ -99,16 +99,18 @@ nano make.conf
 ```
 ```
 # RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
-# make.conf file (c) 2022 -> /etc/portage/make.conf
+# make.conf file -> /etc/portage/make.conf
 
-USE="alsa dbus elogind jpeg pulseaudio pipewire png nls X"
+USE="alsa dbus elogind jpeg libnotify pulseaudio pipewire png nls X xinerama"
+
+CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt rdrand sse sse2 sse3 sse4_1 sse4_2 ssse3"
 
 COMMON_FLAGS="-O2 -pipe -fomit-frame-pointer"
 CFLAGS="${COMMON_FLAGS}"
 CXXFLAGS="${COMMON_FLAGS}"
 FCFLAGS="${COMMON_FLAGS}"
 FFLAGS="${COMMON_FLAGS}"
-MAKE_OPTS="-j8"
+MAKE_OPTS="-j6"
 
 GENTOO_MIRRORS="https://mirror.dkm.cz/gentoo/"
 PORTAGE_BINHOST="http://94.113.203.183:55/xmonad-lto"
@@ -118,7 +120,7 @@ PKGDIR="/var/cache/binpkgs"
 PORTAGE_NICENESS=19
 PORTAGE_IONICE_COMMAND="ionice -c 3 -p \${PID}"
 EMERGE_DEFAULT_OPTS="-v --ask-enter-invalid --jobs=4 --load-average=4"
-FEATURES="pkgdir-index-trusted binpkg-logs buildpkg cgroup collision-protect downgrade-backup parallel-fetch sign"
+FEATURES="pkgdir-index-trusted binpkg-logs buildpkg cgroup downgrade-backup parallel-fetch sign"
 
 ACCEPT_KEYWORDS="amd64"
 ACCEPT_LICENSE="-* @FREE"
