@@ -44,10 +44,10 @@ mkdir -p /mnt/gentoo/boot && mount /dev/nvme0n1p1 /mnt/gentoo/boot
 cd /mnt/gentoo
 ```
 ```
-wget https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20221205T133149Z/stage3-amd64-openrc-20221205T133149Z.tar.xz
+wget https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20230402T170151Z/stage3-amd64-openrc-20230402T170151Z.tar.xz
 ```
 ```
-tar xpf stage3-amd64-openrc-20221205T133149Z.tar.xz --xattrs-include='*.*' --numeric-owner
+tar xpf stage3-amd64-openrc-20230402T170151Z.tar.xz --xattrs-include='*.*' --numeric-owner
 ```
 ```
 mkdir -p /mnt/gentoo/var/db/repos/gentoo && mkdir -p /mnt/gentoo/etc/portage/repos.conf
@@ -98,7 +98,7 @@ rm make.conf && rm -R package.use && rm -R package.accept_keywords && rm -R pack
 nano make.conf
 ```
 ```
-# RXMD - Realist Xmonad Minimal Desktop
+# RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
 # make.conf file (c) 2022 -> /etc/portage/make.conf
 
 USE="alsa dbus elogind jpeg pulseaudio pipewire png nls X"
@@ -111,7 +111,7 @@ FFLAGS="${COMMON_FLAGS}"
 MAKE_OPTS="-j8"
 
 GENTOO_MIRRORS="https://mirror.dkm.cz/gentoo/"
-PORTAGE_BINHOST="http://94.113.203.183:55/xmonad"
+PORTAGE_BINHOST="http://94.113.203.183:55/xmonad-lto"
 PORTDIR="/var/db/repos/gentoo"
 DISTDIR="/var/cache/distfiles"
 PKGDIR="/var/cache/binpkgs"
@@ -129,14 +129,14 @@ LC_MESSAGES=C
 L10N="cs"
 
 INPUT_DEVICES="libinput"
-VIDEO_CARDS="nouveau"
+VIDEO_CARDS="vmware nouveau"
 ```
 ### Edit file - /etc/portage/package.accept_keywords
 ```
 nano package.accept_keywords 
 ```
 ```
-# RXMD - Realist Xmonad Minimal Desktop
+# RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
 # package.accept_keywords file -> /etc/portage/package.accept_keywords
 
 # ADMIN-APP
@@ -168,6 +168,9 @@ dev-php/xdebug-handler ~amd64
 
 # DEV-PYTHON
 dev-python/python-lhafile ~amd64
+
+# SYS-FIRMWARE
+sys-firmware/nvidia-firmware ~amd64
 
 # SYS-KERNEL
 sys-kernel/zen-sources ~amd64
@@ -404,18 +407,19 @@ dev-lang/ghc ~amd64
 
 # DEV-UTIL
 dev-util/ragel ~amd64
+dev-util/colm ~amd64
 
 # LXDE-BASE
 lxde-base/lxappearance ~amd64
 lxde-base/lxde-common ~amd64
 lxde-base/lxrandr ~amd64
 
-# NET-MISC
-net-misc/youtube-viewer ~amd64
-
 # MEDIA-VIDEO
 media-video/pipewire ~amd64
 media-video/wireplumber ~amd64
+
+# WWW-CLIENT
+www-client/microsoft-edge-beta ~amd64
 
 # X11-LIBS
 x11-libs/libfm ~amd64
@@ -438,7 +442,7 @@ x11-wm/xmonad-contrib ~amd64
 nano package.use
 ```
 ```
-# Realist Xmonad Minimal Desktop
+# RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
 # package.use file -> /etc/portage/package.use
 
 # APP-ADMIN
@@ -467,10 +471,12 @@ dev-db/mysql -perl
 
 # DEV-LANG
 dev-lang/php apache2 bcmath curl fpm gd mysql mysqli pdo soap sockets spell sqlite xmlreader xmlwriter zip
+dev-lang/python lto pgo
 
 # DEV-LIBS
 dev-libs/elfutils lzma zstd
 dev-libs/libdbusmenu gtk3
+dev-libs/libxml2 icu
 
 # DEV-PYTHON
 dev-python/PyQt5 -bluetooth dbus declarative gui multimedia network opengl printsupport svg widgets
@@ -478,14 +484,21 @@ dev-python/PyQt5 -bluetooth dbus declarative gui multimedia network opengl print
 # DEV-VCS
 dev-vcs/git -perl
 
+# DEV-QT
+dev-qt/qtmultimedia widgets
+
 # GNOME-BASE
 gnome-base/gvfs cdda http udisks nfs archive
 
 # MEDIA-FONTS
 media-fonts/terminus-font -ru-g
+media-fonts/fontawesome ttf
 
 # MEDIA-GFX
+media-gfx/gimp jpeg2k jpegxl udev vector-icons webp wmf xpm
 media-gfx/imagemagick djvu lzma raw svg truetype zip xml
+media-gfx/inkscape exif imagemagick svg2
+
 
 # MEDIA-LIBS
 media-libs/audiofile flac
@@ -510,13 +523,32 @@ media-sound/pulseaudio alsa-plugin -bluetooth -daemon
 media-video/ffmpeg mp3 sdl svg truetype v4l vorbis webp x264 xvid
 media-video/pipewire sound-server v4l -bluetooth
 
+# NET-LIBS
+net-libs/nodejs lto
+
+# NET-MISC
+net-misc/networkmanager -modemmanager -bluetooth dhcpcd iptables lto resolvconf
+
+# SYS-BOOT
+sys-boot/grub mount
+
+# SYS-DEVEL
+sys-devel/gcc graphite lto pgo
+
 # SYS-KERNEL
 sys-kernel/zen-sources symlink
 sys-kernel/gentoo-sources symlink
 sys-kernel/linux-firmware initramfs
 
-# XFCE-BASE
-# xfce-base/tumbler epub pdf
+# SYS-LIBS
+sys-libs/zlib minizip
+
+# WWW-CLIENT
+www-client/firefox lto pgo
+www-client/microsoft-edge-beta qt5
+
+# X11-BASE
+x11-base/xorg-server xvfb
 
 # X11-TERMS
 x11-terms/rxvt-unicode perl font-styles mousewheel perl 24-bit-color 256-color blink fading-colors gdk-pixbuf startup-notification unicode3 xft
@@ -528,6 +560,9 @@ x11-libs/motif xft
 
 # X11-MISC
 x11-misc/xmobar wifi xft xpm
+
+# XFCE-BASE
+xfce-base/thunar udisks
 ```
 ### Edit file - /etc/portage/package.license
 ```
@@ -549,7 +584,7 @@ sys-kernel/linux-firmware linux-fw-redistributable no-source-code
 nano package.mask
 ```
 ```
-# RXMD - Realist Xmonad Minimal Desktop
+# RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
 # package.mask file -> /etc/portage/package.mask
 
 # // some custom masked package //
