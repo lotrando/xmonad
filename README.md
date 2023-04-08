@@ -569,15 +569,27 @@ xfce-base/thunar udisks
 nano package.license
 ```
 ```
-# RXMD - Realist Xmonad Minimal Desktop
+# RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
 # package.license file -> /etc/portage/package.license
 
 # APP-EDITORS
 app-editors/sublime-text Sublime
 app-editors/vscode Microsoft-vscode
 
+# MEDIA-FONTS
+media-fonts/corefonts MSttfEULA
+
 # SYS-KERNEL
 sys-kernel/linux-firmware linux-fw-redistributable no-source-code
+
+# APP-ARCH
+app-arch/rar RAR
+
+# SYS-FIRMFARE
+sys-firmware/nvidia-firmware NVIDIA-r2
+
+# WWW-CLIENT
+www-client/microsoft-edge-beta microsoft-edge
 ```
 ### Edit file - /etc/portage/package.mask
 ```
