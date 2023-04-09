@@ -7,7 +7,7 @@ This project contains complete installation commands and config files for create
 <img src="xmonad-screen.png" alt="xmonad-screen" />
 
 ## Grub background
-<img src="grub-screen.png" alt="grub" />
+<img src="grub.png" alt="grub" />
 
 ## Create install environment
 
