@@ -59,10 +59,10 @@ mkdir -p /mnt/gentoo/boot && mount /dev/nvme0n1p1 /mnt/gentoo/boot
 cd /mnt/gentoo
 ```
 ```
-wget https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20230402T170151Z/stage3-amd64-openrc-20230402T170151Z.tar.xz
+wget https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20230430T170359Z/stage3-amd64-openrc-20230430T170359Z.tar.xz
 ```
 ```
-tar xpf stage3-amd64-openrc-20230402T170151Z.tar.xz --xattrs-include='*.*' --numeric-owner
+tar xpf stage3-amd64-openrc-20230430T170359Z.tar.xz --xattrs-include='*.*' --numeric-owner
 ```
 ```
 mkdir -p /mnt/gentoo/var/db/repos/gentoo && mkdir -p /mnt/gentoo/etc/portage/repos.conf
