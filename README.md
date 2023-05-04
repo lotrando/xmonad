@@ -671,7 +671,10 @@ locale-gen
 eselect locale set 7
 ```
 ```
-env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
+env-update && source /etc/profile
+```
+```
+export PS1="(chroot) ${PS1}"
 ```
 ### Edit file - /etc/conf.d/net
 ```
