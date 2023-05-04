@@ -16,7 +16,22 @@ This project contains complete installation commands and config files for create
 parted -s /dev/nvme0n1 mklabel gpt
 ```
 ```
+parted -s /dev/sda mklabel gpt
+```
+```
 parted -a optimal /dev/nvme0n1 << END
+unit mib
+mkpart primary fat32 1 150
+name 1 UEFI
+set 1 bios_grub on
+mkpart primary 150 -1
+name 2 ROOT
+p
+quit
+END
+```
+```
+parted -a optimal /dev/sda << END
 unit mib
 mkpart primary fat32 1 150
 name 1 UEFI
