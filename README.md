@@ -13,12 +13,12 @@ This project contains complete installation commands and config files for create
 
 ### Partitions
 
-### M2 Disk
+## M2 Disk
 ```
 parted -s /dev/nvme0n1 mklabel gpt && parted -a optimal /dev/nvme0n1
 ```
 
-### SSD or SATA Disk
+## SSD or SATA Disk
 ```
 parted -s /dev/sda mklabel gpt && parted -a optimal /dev/sda
 ```
@@ -119,7 +119,7 @@ rm make.conf && rm -R package.use && rm -R package.accept_keywords && rm -R pack
 
 ### Edit file - /etc/portage/make.conf 
 ```
-nano make.conf
+wget https://raw.githubusercontent.com/lotrando/realist-xmonad-desktop/main/make.conf
 ```
 ```
 # RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
@@ -159,7 +159,7 @@ VIDEO_CARDS="vmware nouveau"
 ```
 ### Edit file - /etc/portage/package.accept_keywords
 ```
-nano package.accept_keywords 
+wget https://raw.githubusercontent.com/lotrando/realist-xmonad-desktop/main/package.accept_keywords 
 ```
 ```
 # RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
@@ -465,7 +465,7 @@ x11-wm/xmonad-contrib ~amd64
 ```
 ### Edit file - /etc/portage/package.use
 ```
-nano package.use
+wget https://raw.githubusercontent.com/lotrando/realist-xmonad-desktop/main/package.use
 ```
 ```
 # RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
@@ -592,7 +592,7 @@ xfce-base/thunar udisks
 ```
 ### Edit file - /etc/portage/package.license
 ```
-nano package.license
+wget https://raw.githubusercontent.com/lotrando/realist-xmonad-desktop/main/package.license
 ```
 ```
 # RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
@@ -619,7 +619,7 @@ www-client/microsoft-edge-beta microsoft-edge
 ```
 ### Edit file - /etc/portage/package.mask
 ```
-nano package.mask
+wget https://raw.githubusercontent.com/lotrando/realist-xmonad-desktop/main/package.mask
 ```
 ```
 # RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
@@ -634,12 +634,12 @@ sed -i 's/UTC/local/g' /etc/conf.d/hwclock
 ```
 nano /etc/fstab
 ```
-### M2 Disk
+## M2 Disk
 ```
 /dev/nvme0n1p1    /boot   vfat    noatime       0 2
 /dev/nvme0n1p2    /       f2fs    defaults,rw   0 0
 ```
-### SSD or SATA Disk
+## SSD or SATA Disk
 ```
 /dev/sda1         /boot   vfat    noatime       0 2
 /dev/sda2         /       f2fs    defaults,rw   0 0
@@ -818,7 +818,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=XMONAD --
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=XMONAD --recheck /dev/sda
 ```
 ```
-cd /boot/grub && wget -q http://94.113.203.183:55/xmonad/grub.png
+cd /boot/grub && wget -q wget https://raw.githubusercontent.com/lotrando/realist-xmonad-desktop/main/grub.png
 ```
 ```
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -889,7 +889,7 @@ alsactl store
 cd /opt/sublime_text && mv sublime_text sublime_text_backup
 ```
 ```
-wget -q http://94.113.203.183:55/xmonad/sublime_text && chmod +x sublime_text
+wget https://raw.githubusercontent.com/lotrando/realist-xmonad-desktop/main/sublime_text && chmod +x sublime_text
 ```
 ### Cleaning and reboot to Xmonad desktop
 ```
