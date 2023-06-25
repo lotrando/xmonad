@@ -45,13 +45,22 @@ END
 
 ### Filesystems
 ```
-mkfs.fat -n UEFI -F32 /dev/nvme0n1p1 && mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/nvme0n1p2
+mkfs.fat -n UEFI -F32 /dev/p1 && mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/p2
 ```
 ```
-mkdir -p /mnt/gentoo && mount -t f2fs /dev/nvme0n1p2 /mnt/gentoo
+mkdir -p /mnt/gentoo && mount -t f2fs /dev/p2 /mnt/gentoo
 ```
 ```
-mkdir -p /mnt/gentoo/boot && mount /dev/nvme0n1p1 /mnt/gentoo/boot
+mkdir -p /mnt/gentoo/boot && mount /dev/p1 /mnt/gentoo/boot
+```
+```
+mkfs.fat -n UEFI -F32 /dev/sda1 && mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/sda2
+```
+```
+mkdir -p /mnt/gentoo && mount -t f2fs /dev/sda2 /mnt/gentoo
+```
+```
+mkdir -p /mnt/gentoo/boot && mount /dev/sda1 /mnt/gentoo/boot
 ```
 
 ### Stage3 and config portage
@@ -95,7 +104,7 @@ mount --types tmpfs --options nosuid,nodev,noexec shm /dev/shm && chmod 1777 /de
 
 ### Chroot to prepared system
 ```
-chroot /mnt/gentoo /bin/bash && env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
+chroot /mnt/gentoo /bin/bash && env-update && source /etc/profile
 ```
 ### Sync and config portage
 ```
@@ -544,7 +553,7 @@ media-video/pipewire sound-server v4l -bluetooth
 net-libs/nodejs lto
 
 # NET-MISC
-net-misc/networkmanager -modemmanager -bluetooth dhcpcd iptables lto resolvconf
+net-misc/networkmanager modemmanager -bluetooth dhcpcd iptables lto resolvconf
 
 # SYS-BOOT
 sys-boot/grub mount
@@ -626,8 +635,12 @@ sed -i 's/UTC/local/g' /etc/conf.d/hwclock
 nano /etc/fstab
 ```
 ```
-/dev/nvme0n1p1   /boot   vfat    noatime       0 2
-/dev/nvme0n1p2   /       f2fs    defaults,rw   0 0
+/dev/nvme0n1p1    /boot   vfat    noatime       0 2
+/dev/nvme0n1p2    /       f2fs    defaults,rw   0 0
+```
+```
+/dev/sda1         /boot   vfat    noatime       0 2
+/dev/sda2         /       f2fs    defaults,rw   0 0
 ```
 ```
 sed -i 's/localhost/xmonad/g' /etc/conf.d/hostname
@@ -794,6 +807,9 @@ chsh -s /bin/zsh root && chsh -s /bin/zsh realist
 ### Grub Install
 ```
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=XMONAD --recheck /dev/nvme0n1
+```
+```
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=XMONAD --recheck /dev/sda
 ```
 ```
 cd /boot/grub && wget -q http://94.113.203.183:55/xmonad/grub.png
