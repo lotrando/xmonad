@@ -13,12 +13,12 @@ This project contains complete installation commands and config files for create
 
 ### Partitions
 
-## M2 disk
+### M2 Disk
 ```
 parted -s /dev/nvme0n1 mklabel gpt && parted -a optimal /dev/nvme0n1
 ```
 
-## SSD or SATA
+### SSD or SATA Disk
 ```
 parted -s /dev/sda mklabel gpt && parted -a optimal /dev/sda
 ```
@@ -634,14 +634,17 @@ sed -i 's/UTC/local/g' /etc/conf.d/hwclock
 ```
 nano /etc/fstab
 ```
+### M2 Disk
 ```
 /dev/nvme0n1p1    /boot   vfat    noatime       0 2
 /dev/nvme0n1p2    /       f2fs    defaults,rw   0 0
 ```
+### SSD or SATA Disk
 ```
 /dev/sda1         /boot   vfat    noatime       0 2
 /dev/sda2         /       f2fs    defaults,rw   0 0
 ```
+
 ```
 sed -i 's/localhost/xmonad/g' /etc/conf.d/hostname
 ```
@@ -689,7 +692,10 @@ env-update && source /etc/profile
 ```
 export PS1="(chroot) ${PS1}"
 ```
+
 ### Edit file - /etc/conf.d/net
+
+## Static network (variable, default dhcp)
 ```
 nano /etc/conf.d/net
 ```
@@ -714,10 +720,11 @@ echo "root:toor" | chpasswd -c SHA256
 echo "realist:toor" | chpasswd -c SHA256
 ```
 ## Compiling phase 
-### Create kernel
+### Create kernel ( ZEN Sources recommended )
 ```
 emerge -g genkernel linux-firmware zen-sources && genkernel all
 ```
+
 ### Binary secure version of gentoo sources but no pipewire and multimedia
 ```
 emerge -g autoconf linux-firmware
@@ -736,7 +743,7 @@ emerge -g rust clang dhcpcd grub usbutils terminus-font sudo f2fs-tools app-misc
 ```
 emerge -g xmonad xmonad-contrib xmobar imagemagick ueberzug ubuntu-font-family numlockx trayer-srg setxkbmap volumeicon xdotool lxrandr xorg-server lxappearance lxmenu-data gnome-themes-standard rxvt-unicode urxvt-perls elementary-xfce-icon-theme notify-osd picom rofi qt5ct adwaita-qt nitrogen nm-applet pcmanfm xprop i3lock pipewire xsetroot roboto file-roller ristretto tumbler firefox mpv audacious pulsemixer btop 
 ```
-### Install web developers packages 
+### Install WEB developers packages 
 ```
 emerge -g phpmyadmin dev-db/mysql =dev-lang/php-8.1.12 =dev-lang/php-7.4.33 nodejs composer vscode sublime-text
 ```
@@ -805,9 +812,11 @@ cd /usr && wget -q http://94.113.203.183:55/xmonad/usr.zip && unzip -oq usr.zip
 chsh -s /bin/zsh root && chsh -s /bin/zsh realist
 ```
 ### Grub Install
+### M2 Disk
 ```
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=XMONAD --recheck /dev/nvme0n1
 ```
+### SSD or SATA Disk
 ```
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=XMONAD --recheck /dev/sda
 ```
