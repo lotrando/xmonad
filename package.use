@@ -1,0 +1,121 @@
+# RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
+# package.use file -> /etc/portage/package.use
+
+# APP-ADMIN
+app-admin/sudo -sendmail
+
+# APP-EDITORS
+app-editors/nano magic
+
+# APP-CRYPT
+app-crypt/gcr gtk
+
+# APP-ESELECT
+app-eselect/eselect-php apache2 fpm
+
+# APP-MISC
+app-misc/mc nls -slang unicode gpm sftp
+
+# APP-TEXT
+app-text/evince djvu tiff
+app-text/ghostscript-gpl cups
+app-text/poppler cairo
+app-text/xmlto text
+
+# DEV-DB
+dev-db/mysql -perl
+
+# DEV-LANG
+dev-lang/php apache2 bcmath curl fpm gd mysql mysqli pdo soap sockets spell sqlite xmlreader xmlwriter zip
+dev-lang/python lto pgo
+
+# DEV-LIBS
+dev-libs/elfutils lzma zstd
+dev-libs/libdbusmenu gtk3
+dev-libs/libxml2 icu
+
+# DEV-PYTHON
+dev-python/PyQt5 -bluetooth dbus declarative gui multimedia network opengl printsupport svg widgets
+
+# DEV-VCS
+dev-vcs/git -perl
+
+# DEV-QT
+dev-qt/qtmultimedia widgets
+
+# GNOME-BASE
+gnome-base/gvfs cdda http udisks nfs archive
+
+# MEDIA-FONTS
+media-fonts/terminus-font -ru-g
+media-fonts/fontawesome ttf
+
+# MEDIA-GFX
+media-gfx/gimp jpeg2k jpegxl udev vector-icons webp wmf xpm
+media-gfx/imagemagick djvu lzma raw svg truetype zip xml
+media-gfx/inkscape exif imagemagick svg2
+
+
+# MEDIA-LIBS
+media-libs/audiofile flac
+media-libs/gegl cairo
+media-libs/flac ogg
+media-libs/libsdl opengl
+media-libs/libsdl2 haptic opengl
+media-libs/libsndfile minimal
+media-libs/libvpx postproc
+media-libs/mesa d3d9 lm-sensor xa
+media-libs/harfbuzz icu
+
+# MEDIA-PLUGINS
+media-plugins/alsa-plugins pulseaudio
+media-plugins/audacious-plugins aac cdda cue flac http lame libnotify modplug mp3 sndfile vorbis wavpack
+
+# MEDIA-SOUND
+media-sound/mpg123 -pulseaudio
+media-sound/pulseaudio alsa-plugin -bluetooth -daemon
+
+# MEDIA-VIDEO
+media-video/ffmpeg mp3 sdl svg truetype v4l vorbis webp x264 xvid
+media-video/pipewire sound-server v4l -bluetooth
+
+# NET-LIBS
+net-libs/nodejs lto
+
+# NET-MISC
+net-misc/networkmanager modemmanager -bluetooth dhcpcd iptables lto resolvconf
+
+# SYS-BOOT
+sys-boot/grub mount
+
+# SYS-DEVEL
+sys-devel/gcc graphite lto pgo
+
+# SYS-KERNEL
+sys-kernel/zen-sources symlink
+sys-kernel/gentoo-sources symlink
+sys-kernel/linux-firmware initramfs
+
+# SYS-LIBS
+sys-libs/zlib minizip
+
+# WWW-CLIENT
+www-client/firefox lto pgo
+www-client/microsoft-edge-beta qt5
+
+# X11-BASE
+x11-base/xorg-server xvfb
+
+# X11-TERMS
+x11-terms/rxvt-unicode perl font-styles mousewheel perl 24-bit-color 256-color blink fading-colors gdk-pixbuf startup-notification unicode3 xft
+
+# X11-LIBS
+x11-libs/cairo opengl
+x11-libs/libfm gtk
+x11-libs/motif xft
+
+# X11-MISC
+x11-misc/xmobar wifi xft xpm
+
+# XFCE-BASE
+xfce-base/thunar udisks
