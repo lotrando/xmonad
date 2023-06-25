@@ -1,12 +1,15 @@
-# Realist's Xmonad Desktop for Web Developers [RXMD] on Gentoo Linux
+# Realist's Xmonad Desktop [ RXMD ] on Gentoo Linux
 
 ## About this project
+
 This project contains complete installation commands and config files for create gentoo linux with Xmonad desktop for Web Developers.
 
 ## Final desktop screenshot
+
 <img src="xmonad-screen.png" alt="xmonad-screen" />
 
 ## Grub background
+
 <img src="grub.png" alt="grub" />
 
 ## Create install environment
@@ -14,16 +17,19 @@ This project contains complete installation commands and config files for create
 ### Partitions
 
 M2 Disk
+
 ```
 parted -s /dev/nvme0n1 mklabel gpt && parted -a optimal /dev/nvme0n1
 ```
 
 SSD or SATA Disk
+
 ```
 parted -s /dev/sda mklabel gpt && parted -a optimal /dev/sda
 ```
 
 #### Parted commands
+
 ```
 unit mib
 mkpart primary fat32 1 150
@@ -31,96 +37,123 @@ name 1 UEFI
 set 1 bios_grub on
 mkpart primary 150 -1
 name 2 ROOT
-p
 quit
-END
 ```
 
 ### Filesystems
 
 M2 disk
+
 ```
 mkfs.fat -n UEFI -F32 /dev/nvme0n1p1 && mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/nvme0n1p2
 ```
+
 ```
 mkdir -p /mnt/gentoo && mount -t f2fs /dev/nvme0n1p2 /mnt/gentoo
 ```
+
 ```
 mkdir -p /mnt/gentoo/boot && mount /dev/nvme0n1p1 /mnt/gentoo/boot
 ```
 
 SSD or SATA disk (Virtualbox)
+
 ```
 mkfs.fat -n UEFI -F32 /dev/sda1 && mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/sda2
 ```
+
 ```
 mkdir -p /mnt/gentoo && mount -t f2fs /dev/sda2 /mnt/gentoo
 ```
+
 ```
 mkdir -p /mnt/gentoo/boot && mount /dev/sda1 /mnt/gentoo/boot
 ```
 
 ### Stage3 and config portage
+
 ```
 cd /mnt/gentoo
 ```
+
 ```
 wget https://gentoo.osuosl.org//releases/amd64/autobuilds/current-stage3-amd64-openrc/stage3-amd64-openrc-20230618T170201Z.tar.xz
 ```
+
+#### another mirror
+
 ```
 wget https://gentoo.c3sl.ufpr.br//releases/amd64/autobuilds/current-stage3-amd64-openrc/stage3-amd64-openrc-20230618T170201Z.tar.xz
 ```
+
 ```
 tar xpf stage3-amd64-openrc-20230618T170201Z.tar.xz --xattrs-include='*.*' --numeric-owner
 ```
+
 ```
 mkdir -p /mnt/gentoo/var/db/repos/gentoo && mkdir -p /mnt/gentoo/etc/portage/repos.conf
 ```
+
 ```
 cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/
 ```
+
 ```
 cp /etc/resolv.conf /mnt/gentoo/etc/
 ```
+
 ### Mounting important system FS
+
 ```
 mount -t proc none /mnt/gentoo/proc && mount -t sysfs none /mnt/gentoo/sys
 ```
+
 ```
 mount --rbind /sys /mnt/gentoo/sys && mount --make-rslave /mnt/gentoo/sys
 ```
+
 ```
 mount --rbind /dev /mnt/gentoo/dev && mount --make-rslave /mnt/gentoo/dev
 ```
+
 ```
 mount --rbind /run /mnt/gentoo/run && mount --make-rslave /mnt/gentoo/run
 ```
+
 ```
 test -L /dev/shm && rm /dev/shm && mkdir /dev/shm
 ```
+
 ```
 mount --types tmpfs --options nosuid,nodev,noexec shm /dev/shm && chmod 1777 /dev/shm
 ```
 
 ### Chroot to prepared system
+
 ```
 chroot /mnt/gentoo /bin/bash && env-update && source /etc/profile
 ```
+
 ### Sync and config portage
+
 ```
 emerge-webrsync
 ```
+
 ```
 cd /etc/portage/
 ```
+
 ```
 rm make.conf && rm -R package.use && rm -R package.accept_keywords && rm -R package.mask
 ```
 
-### Edit file - /etc/portage/make.conf 
+### File - /etc/portage/make.conf
+
 ```
 wget https://raw.githubusercontent.com/lotrando/realist-xmonad-desktop/main/make.conf
 ```
+
 ```
 # RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
 # make.conf file -> /etc/portage/make.conf
@@ -157,10 +190,13 @@ L10N="cs"
 INPUT_DEVICES="libinput"
 VIDEO_CARDS="vmware nouveau"
 ```
-### Edit file - /etc/portage/package.accept_keywords
+
+### File - /etc/portage/package.accept_keywords
+
 ```
-wget https://raw.githubusercontent.com/lotrando/realist-xmonad-desktop/main/package.accept_keywords 
+wget https://raw.githubusercontent.com/lotrando/realist-xmonad-desktop/main/package.accept_keywords
 ```
+
 ```
 # RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
 # package.accept_keywords file -> /etc/portage/package.accept_keywords
@@ -463,10 +499,13 @@ x11-themes/notify-osd-icons ~amd64
 x11-wm/xmonad ~amd64
 x11-wm/xmonad-contrib ~amd64
 ```
-### Edit file - /etc/portage/package.use
+
+### File - /etc/portage/package.use
+
 ```
 wget https://raw.githubusercontent.com/lotrando/realist-xmonad-desktop/main/package.use
 ```
+
 ```
 # RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
 # package.use file -> /etc/portage/package.use
@@ -590,10 +629,13 @@ x11-misc/xmobar wifi xft xpm
 # XFCE-BASE
 xfce-base/thunar udisks
 ```
+
 ### Edit file - /etc/portage/package.license
+
 ```
 wget https://raw.githubusercontent.com/lotrando/realist-xmonad-desktop/main/package.license
 ```
+
 ```
 # RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
 # package.license file -> /etc/portage/package.license
@@ -617,29 +659,39 @@ sys-firmware/nvidia-firmware NVIDIA-r2
 # WWW-CLIENT
 www-client/microsoft-edge-beta microsoft-edge
 ```
+
 ### Edit file - /etc/portage/package.mask
+
 ```
 wget https://raw.githubusercontent.com/lotrando/realist-xmonad-desktop/main/package.mask
 ```
+
 ```
 # RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
 # package.mask file -> /etc/portage/package.mask
 
 # // some custom masked package //
 ```
+
 ```
 sed -i 's/UTC/local/g' /etc/conf.d/hwclock
 ```
+
 ### Edit file - /etc/fstab
+
 ```
 nano /etc/fstab
 ```
+
 ## M2 Disk
+
 ```
 /dev/nvme0n1p1    /boot   vfat    noatime       0 2
 /dev/nvme0n1p2    /       f2fs    defaults,rw   0 0
 ```
+
 ## SSD or SATA Disk
+
 ```
 /dev/sda1         /boot   vfat    noatime       0 2
 /dev/sda2         /       f2fs    defaults,rw   0 0
@@ -648,47 +700,63 @@ nano /etc/fstab
 ```
 sed -i 's/localhost/xmonad/g' /etc/conf.d/hostname
 ```
+
 ```
 sed -i 's/default8x16/ter-v16b/g' /etc/conf.d/consolefont
 ```
+
 ```
 sed -i 's/us/cs/g' /etc/conf.d/keymaps
 ```
+
 ```
 sed -i 's/127.0.0.1/#127.0.0.1/g' /etc/hosts
 ```
+
 ```
 echo "127.0.0.1 xmonad.gentoo.dev xmonad localhost" >> /etc/hosts
 ```
+
 ### Edit file - /etc/locale.gen
+
 ```
 nano /etc/locale.gen
 ```
+
 ```
 cs_CZ.UTF-8 UTF-8
 cs_CZ ISO-8859-2
 ```
+
 ### Edit file - /etc/env.d/02locale
+
 ```
 nano /etc/env.d/02locale
 ```
+
 ```
 LANG="cs_CZ.UTF-8"
 LC_COLLATE="C"
 ```
+
 ```
 echo "Europe/Prague" > /etc/timezone
 ```
+
 ### Create locale
+
 ```
 locale-gen
 ```
+
 ```
 eselect locale set 7
 ```
+
 ```
 env-update && source /etc/profile
 ```
+
 ```
 export PS1="(chroot) ${PS1}"
 ```
@@ -696,74 +764,98 @@ export PS1="(chroot) ${PS1}"
 ### Edit file - /etc/conf.d/net
 
 ## Static network (variable, default dhcp)
+
 ```
 nano /etc/conf.d/net
 ```
+
 ```
 config_enp0s3="192.168.0.30 netmask 255.255.255.0"
 routes_enp0s3="default via 192.168.0.1"
 ```
+
 ```
 cd /etc/init.d/
 ```
+
 ```
 ln -s net.lo net.enp0s3
 ```
+
 ### Create user (replace realist and toor with custom user and password)
+
 ```
 useradd -m -G audio,video,usb,cdrom,portage,users,wheel -s /bin/bash realist
 ```
+
 ```
 echo "root:toor" | chpasswd -c SHA256
 ```
+
 ```
 echo "realist:toor" | chpasswd -c SHA256
 ```
-## Compiling phase 
+
+## Compiling phase
+
 ### Create kernel ( ZEN Sources recommended )
+
 ```
 emerge -g genkernel linux-firmware zen-sources && genkernel all
 ```
 
 ### Binary secure version of gentoo sources but no pipewire and multimedia
+
 ```
-emerge -g autoconf linux-firmware
+emerge -g autoconf linux-firmware && emerge -g gentoo-kernel-bin
 ```
+
+### Install important system packages
+
 ```
-emerge -g gentoo-kernel-bin
+emerge -g gcc python rust clang dhcpcd grub usbutils terminus-font sudo f2fs-tools app-misc/mc ranger dev-vcs/git python oh-my-zsh gentoo-zsh-completions zsh-completions exa alsa-utils lsof htop neofetch eix gentoolkit --noreplace nano
 ```
-### Install important system packages 
+
+### Install important desktop packages
+
 ```
-emerge -g gcc python rust clang dhcpcd grub usbutils terminus-font sudo f2fs-tools app-misc/mc ranger dev-vcs/git python oh-my-zsh gentoo-zsh-completions zsh-completions exa alsa-utils lsof htop neofetch eix gentoolkit --noreplace nano 
+emerge -g xmonad xmonad-contrib xmobar imagemagick ueberzug ubuntu-font-family numlockx trayer-srg setxkbmap volumeicon xdotool lxrandr xorg-server lxappearance lxmenu-data gnome-themes-standard rxvt-unicode urxvt-perls elementary-xfce-icon-theme notify-osd picom rofi qt5ct adwaita-qt nitrogen nm-applet pcmanfm xprop i3lock pipewire xsetroot roboto file-roller ristretto tumbler firefox mpv audacious pulsemixer btop
 ```
-### Install important desktop packages 
-```
-emerge -g xmonad xmonad-contrib xmobar imagemagick ueberzug ubuntu-font-family numlockx trayer-srg setxkbmap volumeicon xdotool lxrandr xorg-server lxappearance lxmenu-data gnome-themes-standard rxvt-unicode urxvt-perls elementary-xfce-icon-theme notify-osd picom rofi qt5ct adwaita-qt nitrogen nm-applet pcmanfm xprop i3lock pipewire xsetroot roboto file-roller ristretto tumbler firefox mpv audacious pulsemixer btop 
-```
-### Install WEB developers packages 
+
+### Install WEB developers packages ( optional )
+
 ```
 emerge -g phpmyadmin dev-db/mysql =dev-lang/php-8.1.16 =dev-lang/php-7.4.33 nodejs composer vscode sublime-text
 ```
-### Set PHP version for CLI and APACHE 
+
+### Set PHP version for CLI and APACHE
+
 ```
 eselect php set cli php7.4 && eselect php set apache2 php7.4
 ```
+
 ### Install oh-my-zsh plugins and theme
+
 ```
 git clone https://github.com/romkatv/powerlevel10k.git /usr/share/zsh/site-contrib/oh-my-zsh/custom/themes/powerlevel10k
 ```
+
 ```
 git clone https://github.com/zsh-users/zsh-autosuggestions.git /usr/share/zsh/site-contrib/oh-my-zsh/custom/plugins/zsh-autosuggestions
 ```
+
 ```
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /usr/share/zsh/site-contrib/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 ```
 
 ## Configurations
+
 ### Grub
+
 ```
 nano /etc/default/grub
 ```
+
 ```
 GRUB_GFXMODE=1920x1080x32
 GRUB_GFXPAYLOAD_LINUX=keep
@@ -774,171 +866,221 @@ GRUB_TIMEOUT=5
 ```
 
 ### Sudo
+
 ```
 sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 ```
+
 ### USER - dotfiles setting
+
 ```
 cd /home/realist
 ```
+
 ```
 rm .bashrc && wget -q http://94.113.203.183:55/xmonad/dotfiles.zip && unzip -oq dotfiles.zip
 ```
+
 ```
 chown -R realist:realist /home/realist/
 ```
+
 ```
 cd i3lock-fancy && make install
 ```
+
 ```
 sed -i 's/interface/enp0s3/g' /home/realist/.config/xmobar/xmobarrc0
 ```
+
 ### ROOT - dotfiles setting
+
 ```
 cd /root && wget -q http://94.113.203.183:55/xmonad/root_dotfiles.zip && unzip -oq root_dotfiles.zip
 ```
+
 ```
 chown -R root:root /root
 ```
+
 ### System Wallpapers and Audacious Nucleo Skin
+
 ```
 cd /usr && wget -q http://94.113.203.183:55/xmonad/usr.zip && unzip -oq usr.zip
 ```
+
 ### Change default shell to OH-MY-ZSH
+
 ```
 chsh -s /bin/zsh root && chsh -s /bin/zsh realist
 ```
+
 ### Grub Install
-### M2 Disk
+
+M2 Disk
+
 ```
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=XMONAD --recheck /dev/nvme0n1
 ```
-### SSD or SATA Disk
+
+SSD or SATA Disk
+
 ```
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=XMONAD --recheck /dev/sda
 ```
+
 ```
 cd /boot/grub && wget -q wget https://raw.githubusercontent.com/lotrando/realist-xmonad-desktop/main/grub.png
 ```
+
 ```
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ### Config WEB Develop enviroment PHP, APACHE, MYSQL, PHPMYADMIN
+
 ```
 rm -R /usr/lib/tmpfiles.d/mysql.conf
 ```
+
 ```
 echo "d /run/mysqld 0755 mysql mysql -" > /usr/lib/tmpfiles.d/mysql.conf
 ```
+
 ```
 sed -i 's/SSL_DEFAULT_VHOST/PHP/g' /etc/conf.d/apache2
 ```
+
 ```
 echo "ServerName localhost" >> /etc/apache2/httpd.conf
 ```
+
 ```
 rm -R /var/www/localhost/htdocs/index.html && echo "<?php phpinfo(); ?>" > /var/www/localhost/htdocs/index.php
 ```
+
 ```
 cp /var/www/localhost/htdocs/phpmyadmin/config.sample.inc.php /var/www/localhost/htdocs/phpmyadmin/config.inc.php
 ```
+
 ```
 mkdir /var/www/localhost/htdocs/phpmyadmin/tmp/
 ```
+
 ```
 chown -R apache:apache /var/www/ && usermod -aG apache realist
 ```
+
 ```
 chmod -R 775 /var/www/localhost/htdocs && chmod -R 777 /var/www/localhost/htdocs/phpmyadmin/tmp
 ```
+
 ### Add Blowfish secret to phpmyadmin
+
 ```
 nano /var/www/localhost/htdocs/phpmyadmin/config.inc.php
 ```
+
 ```
-$cfg['blowfish_secret'] = 'WntN0150l71sLq/{w4V0:ZXFv7WcB-Qz'; 
+$cfg['blowfish_secret'] = 'WntN0150l71sLq/{w4V0:ZXFv7WcB-Qz';
 ```
+
 ### Mysql root password
+
 ```
 emerge --config mysql
 ```
+
 ### Run daemons
+
 ```
 rc-update add elogind boot && rc-update add consolefont default && rc-update add numlock default
 ```
+
 ```
 rc-update add sshd default && rc-update add dbus default && rc-update add alsasound default
 ```
+
 ```
 rc-update add net.enp0s3 default && rc-update add dhcpcd default
 ```
+
 ```
 rc-update add apache2 default && rc-update add mysql default
 ```
+
 ```
 rc-update add NetworkManager default
 ```
+
 ### Store volume
+
 ```
 alsactl store
 ```
 
 ### Patched Sublime Text
+
 ```
 cd /opt/sublime_text && mv sublime_text sublime_text_backup
 ```
+
 ```
 wget https://raw.githubusercontent.com/lotrando/realist-xmonad-desktop/main/sublime_text && chmod +x sublime_text
 ```
+
 ### Cleaning and reboot to Xmonad desktop
+
 ```
 rm -R /home/realist/dotfiles.zip && rm -R /usr/usr.zip && rm -R /root/root_dotfiles.zip && exit
 ```
+
 ```
 cd / && umount -R /mnt/gentoo && reboot
 ```
+
 # Keybinding of Xmonad desktop
-|Keys                 |Function                                                     |
-|---                  |---                                                          |
-|Win-Shift-Enter      |Rofi Drun                                                    |
-|Win-Shift-Backspace  |Rofi Apps                                                    |
-|Win-Shift-p          |Rofi Powermenu                                               |
-|Win-Shift-r          |Xmonad Restart                                               |
-|Win-Shift-q          |Xmonad Quit                                                  |
-|Win-Shift-c          |Kill focused window                                          |
-|Win-Shift-a          |Kill all windows on current workspace                        |
-|Win-Enter            |Run URxvt                                                    |
-|Win-Alt-b            |Run Firefox                                                  |
-|Win-Alt-e            |Run Sublime                                                  |
-|Win-Alt-f            |Run Pcmanfm                                                  |
-|Win-Alt-t            |Run Btop                                                     |
-|Win-Alt-m            |Run Pulsemixer                                               |
-|Win-d                |Decrease window spacing                                      |
-|Win-i                |Increase window spacing                                      |
-|Win-Shift-d          |Decrease screen spacing                                      |
-|Win-Shift-i          |Increase screen spacing                                      |
-|Win-h                |Shrink horiz window width                                    |
-|Win-l                |Expand horiz window width                                    |
-|Win-Alt-j            |Shrink vert window width                                     |
-|Win-Alt-k            |Expand vert window width                                     |
-|Win-m                |Move focus to the master window                              |
-|Win-j                |Move focus to the next window                                |
-|Win-k                |Move focus to the prev window                                |
-|Win-.                |Switch focus to next monitor                                 |
-|Win-,                |Switch focus to prev monitor                                 |
-|Win-Shift-Right      |Shifts focused window to next Workspace                      |
-|Win-Shift-Left       |Shifts focused window to prev Workspace                      |
-|Win-f                |Toggles my 'floats' layout                                   |
-|Win-t                |Push floating window back to tile                            |
-|Win-Shift-t          |Push ALL floating windows to tile                            |
-|Win-Tab              |Switch to next layout                                        |
-|Win-Space            |Toggles noborder/full                                        |
-|Win-Shift-n          |Toggles noborder                                             |
-|Win-Shift-m          |Swap the focused window and the master window                |
-|Win-Shift-j          |Swap focused window with next window                         |
-|Win-Shift-k          |Swap focused window with prev window                         |
-|Win-Backspace        |Moves focused window to master, others maintain order        |
-|Win-Shift-Tab        |Rotate all windows except master and keep focus in place     |
-|Win-Ctrl-Tab         |Rotate all the windows in the current stack                  |
-|Win-Shift and g      |Search prompt Google                                         |
+
+| Keys                | Function                                                 |
+| ------------------- | -------------------------------------------------------- |
+| Win-Shift-Enter     | Rofi Drun                                                |
+| Win-Shift-Backspace | Rofi Apps                                                |
+| Win-Shift-p         | Rofi Powermenu                                           |
+| Win-Shift-r         | Xmonad Restart                                           |
+| Win-Shift-q         | Xmonad Quit                                              |
+| Win-Shift-c         | Kill focused window                                      |
+| Win-Shift-a         | Kill all windows on current workspace                    |
+| Win-Enter           | Run URxvt                                                |
+| Win-Alt-b           | Run Firefox                                              |
+| Win-Alt-e           | Run Sublime                                              |
+| Win-Alt-f           | Run Pcmanfm                                              |
+| Win-Alt-t           | Run Btop                                                 |
+| Win-Alt-m           | Run Pulsemixer                                           |
+| Win-d               | Decrease window spacing                                  |
+| Win-i               | Increase window spacing                                  |
+| Win-Shift-d         | Decrease screen spacing                                  |
+| Win-Shift-i         | Increase screen spacing                                  |
+| Win-h               | Shrink horiz window width                                |
+| Win-l               | Expand horiz window width                                |
+| Win-Alt-j           | Shrink vert window width                                 |
+| Win-Alt-k           | Expand vert window width                                 |
+| Win-m               | Move focus to the master window                          |
+| Win-j               | Move focus to the next window                            |
+| Win-k               | Move focus to the prev window                            |
+| Win-.               | Switch focus to next monitor                             |
+| Win-,               | Switch focus to prev monitor                             |
+| Win-Shift-Right     | Shifts focused window to next Workspace                  |
+| Win-Shift-Left      | Shifts focused window to prev Workspace                  |
+| Win-f               | Toggles my 'floats' layout                               |
+| Win-t               | Push floating window back to tile                        |
+| Win-Shift-t         | Push ALL floating windows to tile                        |
+| Win-Tab             | Switch to next layout                                    |
+| Win-Space           | Toggles noborder/full                                    |
+| Win-Shift-n         | Toggles noborder                                         |
+| Win-Shift-m         | Swap the focused window and the master window            |
+| Win-Shift-j         | Swap focused window with next window                     |
+| Win-Shift-k         | Swap focused window with prev window                     |
+| Win-Backspace       | Moves focused window to master, others maintain order    |
+| Win-Shift-Tab       | Rotate all windows except master and keep focus in place |
+| Win-Ctrl-Tab        | Rotate all the windows in the current stack              |
+| Win-Shift and g     | Search prompt Google                                     |
