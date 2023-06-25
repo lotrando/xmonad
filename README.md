@@ -74,7 +74,7 @@ wget https://gentoo.osuosl.org//releases/amd64/autobuilds/current-stage3-amd64-o
 wget https://gentoo.c3sl.ufpr.br//releases/amd64/autobuilds/current-stage3-amd64-openrc/stage3-amd64-openrc-20230618T170201Z.tar.xz
 ```
 ```
-tar xpf stage3-amd64-openrc-20230430T170359Z.tar.xz --xattrs-include='*.*' --numeric-owner
+tar xpf stage3-amd64-openrc-20230618T170201Z.tar.xz --xattrs-include='*.*' --numeric-owner
 ```
 ```
 mkdir -p /mnt/gentoo/var/db/repos/gentoo && mkdir -p /mnt/gentoo/etc/portage/repos.conf
