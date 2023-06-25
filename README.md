@@ -23,7 +23,7 @@ SSD or SATA Disk
 parted -s /dev/sda mklabel gpt && parted -a optimal /dev/sda
 ```
 
-## Parted commands
+#### Parted commands
 ```
 unit mib
 mkpart primary fat32 1 150
@@ -38,7 +38,7 @@ END
 
 ### Filesystems
 
-## M2 disk
+M2 disk
 ```
 mkfs.fat -n UEFI -F32 /dev/nvme0n1p1 && mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/nvme0n1p2
 ```
@@ -49,7 +49,7 @@ mkdir -p /mnt/gentoo && mount -t f2fs /dev/nvme0n1p2 /mnt/gentoo
 mkdir -p /mnt/gentoo/boot && mount /dev/nvme0n1p1 /mnt/gentoo/boot
 ```
 
-## SSD or SATA disk (virtualbox)
+SSD or SATA disk (Virtualbox)
 ```
 mkfs.fat -n UEFI -F32 /dev/sda1 && mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/sda2
 ```
