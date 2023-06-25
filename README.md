@@ -745,7 +745,7 @@ emerge -g xmonad xmonad-contrib xmobar imagemagick ueberzug ubuntu-font-family n
 ```
 ### Install WEB developers packages 
 ```
-emerge -g phpmyadmin dev-db/mysql =dev-lang/php-8.1.12 =dev-lang/php-7.4.33 nodejs composer vscode sublime-text
+emerge -g phpmyadmin dev-db/mysql =dev-lang/php-8.1.16 =dev-lang/php-7.4.33 nodejs composer vscode sublime-text
 ```
 ### Set PHP version for CLI and APACHE 
 ```
