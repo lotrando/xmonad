@@ -12,26 +12,19 @@ This project contains complete installation commands and config files for create
 ## Create install environment
 
 ### Partitions
+
+## M2 disk
 ```
-parted -s /dev/nvme0n1 mklabel gpt
+parted -s /dev/nvme0n1 mklabel gpt && parted -a optimal /dev/nvme0n1
 ```
+
+## SSD or SATA
 ```
-parted -s /dev/sda mklabel gpt
+parted -s /dev/sda mklabel gpt && parted -a optimal /dev/sda
 ```
+
+## Parted commands
 ```
-parted -a optimal /dev/nvme0n1 << END
-unit mib
-mkpart primary fat32 1 150
-name 1 UEFI
-set 1 bios_grub on
-mkpart primary 150 -1
-name 2 ROOT
-p
-quit
-END
-```
-```
-parted -a optimal /dev/sda << END
 unit mib
 mkpart primary fat32 1 150
 name 1 UEFI
@@ -44,15 +37,19 @@ END
 ```
 
 ### Filesystems
+
+## M2 disk
 ```
-mkfs.fat -n UEFI -F32 /dev/p1 && mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/p2
+mkfs.fat -n UEFI -F32 /dev/nvme0n1p1 && mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/nvme0n1p2
 ```
 ```
-mkdir -p /mnt/gentoo && mount -t f2fs /dev/p2 /mnt/gentoo
+mkdir -p /mnt/gentoo && mount -t f2fs /dev/nvme0n1p2 /mnt/gentoo
 ```
 ```
-mkdir -p /mnt/gentoo/boot && mount /dev/p1 /mnt/gentoo/boot
+mkdir -p /mnt/gentoo/boot && mount /dev/nvme0n1p1 /mnt/gentoo/boot
 ```
+
+## SSD or SATA disk (virtualbox)
 ```
 mkfs.fat -n UEFI -F32 /dev/sda1 && mkfs.f2fs -l ROOT -O extra_attr,inode_checksum,sb_checksum -f /dev/sda2
 ```
