@@ -1,4 +1,4 @@
-# Lotrando's .bashrc file
+# Realist's .bashrc file
 
 export EIX_LIMIT=0
 
@@ -9,26 +9,24 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput se
 LS_COLORS='di=1;35:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90:*.png=35:*.gif=36:*.jpg=35:*.c=92:*.jar=33:*.py=93:*.h=90:*.txt=94:*.doc=104:*.docx=104:*.odt=104:*.csv=102:*.xlsx=102:*.xlsm=102:*.rb=31:*.cpp=92:*.sh=92:*.html=96:*.zip=4;33:*.tar.gz=4;33:*.mp4=105:*.mp3=106'
 export LS_COLORS
 
-### ARCHIVE EXTRACTION ###
-
-# usage: ex <file>
+# Archive extract ( usage: ex <file> )
 ex ()
 {
   if [ -f $1 ] ; then
     case $1 in
+      *.7z)        7z x $1      ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.rar)       unrar x $1   ;;
+      *.tar)       tar xf $1    ;;
       *.tar.bz2)   tar xjf $1   ;;
       *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
       *.tar.xz)    tar xf $1    ;;
       *.tar.zst)   unzstd $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.Z)         uncompress $1;;
+      *.zip)       unzip $1     ;;
       *)           echo "'$1' cannot be extracted via ex()" ;;
     esac
   else
@@ -38,8 +36,7 @@ ex ()
 
 ### ALIASES ###
 
-# system
-alias x="startx"
+# System
 alias cc="clear"
 alias df="df -h"
 alias mkd="mkdir -pv"
@@ -49,14 +46,20 @@ alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
 
-# changing "ls" to "exa"
+# Changing "ls" to "exa"
 alias ls='exa -al --color=always --group-directories-first'
 alias la='exa -a --color=always --group-directories-first'
 alias ll='exa -l --color=always --group-directories-first'
 alias lt='exa -aT --color=always --group-directories-first'
 alias l.='exa -a | egrep "^\."'
 
-# git
+# Portage
+alias install="sudo emerge -av"
+alias update="sudo emerge -uDU @world"
+alias clean="sudo emerge --depclean"
+alias sync="sudo emerge --sync"
+
+# Git
 alias g="git"
 alias addup='git add -u'
 alias addall='git add .'
@@ -71,10 +74,7 @@ alias status='git status'
 alias tag='git tag'
 alias newtag='git tag -a'
 
-# config aliases
-alias zshconfig="nano ~/.zshrc"
-alias p10config="nano ~/.p10k.zsh"
-
-# switch between shells
-alias tobash="sudo chsh -s $USER /bin/bash && echo 'Now log out.'"
-alias tozsh="sudo chsh -s $USER /bin/zsh && echo 'Now log out.'"
+# Laravel Artisan
+alias art='php artisan'
+alias server='art serve'
+___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
