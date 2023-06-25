@@ -734,10 +734,7 @@ emerge -g gentoo-kernel-bin
 ```
 ### Install important system packages 
 ```
-emerge -gUNDu @world
-```
-```
-emerge -g rust clang dhcpcd grub usbutils terminus-font sudo f2fs-tools app-misc/mc ranger dev-vcs/git python oh-my-zsh gentoo-zsh-completions zsh-completions exa alsa-utils lsof htop neofetch eix gentoolkit --noreplace nano 
+emerge -g gcc python rust clang dhcpcd grub usbutils terminus-font sudo f2fs-tools app-misc/mc ranger dev-vcs/git python oh-my-zsh gentoo-zsh-completions zsh-completions exa alsa-utils lsof htop neofetch eix gentoolkit --noreplace nano 
 ```
 ### Install important desktop packages 
 ```
