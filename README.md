@@ -68,7 +68,7 @@ mkdir -p /mnt/gentoo/boot && mount /dev/sda1 /mnt/gentoo/boot
 cd /mnt/gentoo
 ```
 ```
-wget https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20230430T170359Z/stage3-amd64-openrc-20230430T170359Z.tar.xz
+wget https://gentoo.osuosl.org//releases/amd64/autobuilds/current-stage3-amd64-openrc/stage3-amd64-openrc-20230618T170201Z.tar.xz
 ```
 ```
 tar xpf stage3-amd64-openrc-20230430T170359Z.tar.xz --xattrs-include='*.*' --numeric-owner
