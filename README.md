@@ -13,12 +13,12 @@ This project contains complete installation commands and config files for create
 
 ### Partitions
 
-## M2 Disk
+M2 Disk
 ```
 parted -s /dev/nvme0n1 mklabel gpt && parted -a optimal /dev/nvme0n1
 ```
 
-## SSD or SATA Disk
+SSD or SATA Disk
 ```
 parted -s /dev/sda mklabel gpt && parted -a optimal /dev/sda
 ```
