@@ -1,0 +1,88 @@
+-- Lotrando's Xmonad Desktop (c) 2021 -> ~/.config/xmobar/xmobarrc1
+
+Config 
+
+{
+    font            = "xft:Ubuntu Nerd Font:weight=bold:pixelsize=12:antialias=true:hinting=true"
+  , additionalFonts =[
+                      "xft:Ubuntu Nerd Font:pixelsize=12:antialias=true:hinting=true"
+                     ,"xft:Ubuntu Nerd Font:pixelsize=14:antialias=true:hinting=true"
+                     ,"xft:Ubuntu Nerd Font:pixelsize=16:antialias=true:hinting=true"
+                     ]
+  , bgColor         = "#031321"
+  , fgColor         = "#ABB2BF"
+  , textOffset      = 15
+  , position        = Static { xpos = 0, ypos = 0, width = 1920, height = 24 }
+  , lowerOnStart    = True
+  , hideOnStart     = False
+  , allDesktops     = True
+  , persistent      = True
+  , alpha           = 200
+  , iconRoot        = "."
+  , commands        =
+
+  [
+  
+    -- Power Menu NF Icon
+        Run Com "echo" [" <fc=#b294bb><fn=2>\xf30d</fn></fc>"] "gentoo-icon" 3600
+      
+    -- Monitor NF Icons
+        -- KERNEL
+      , Run Com "echo" ["<fc=#c5c8c6><fn=1>\xf30d</fn></fc>"] "krn-icon" 3600
+      , Run Com "echo" ["<fc=#b5bd68><fn=2>\xf6ff</fn></fc>"] "lan-icon" 3600
+      , Run Com "echo" ["<fc=#b5bd68><fn=2>\xf1eb</fn></fc>"] "wifi-icon" 3600
+      , Run Com "echo" ["<fc=#b294bb><fn=1>\xf011</fn></fc>"] "upt-icon" 3600
+      , Run Com "echo" ["<fc=#de935f><fn=1>\xe266</fn></fc>"] "cpu-icon" 3600
+      , Run Com "echo" ["<fc=#81a2be><fn=2>\xf8c7</fn></fc>"] "tem-icon" 3600
+      , Run Com "echo" ["<fc=#cc6666><fn=1>\xf85a</fn></fc>"] "ram-icon" 3600
+      , Run Com "echo" ["<fc=#81a2be><fn=2>\xf0a0</fn></fc>"] "hdd-icon" 3600
+      , Run Com "echo" ["<fc=#de935f><fn=2>\xf455</fn></fc>"] "cal-icon" 3600
+      , Run Com "echo" ["<fc=#c5c8c6><fn=2>\xe384</fn></fc>"] "time-icon" 3600
+      , Run Com "echo" ["<fc=#b294bb><fn=2>\xf40b</fn></fc>"] "kbd-icon" 3600
+    -- Separator NF Icons
+      , Run Com "echo" ["<fc=#707880><fn=1> | </fn></fc>"] "separator" 3600
+      
+        
+        -- WORKSPACES
+      , Run UnsafeStdinReader
+    -- KERNEL
+      , Run Com "uname" ["-r"] "" 3600
+    -- NETWORK
+      , Run Network "eno1" ["-t", "<fn=0>\xf019 </fn><rx> Kb  <fn=0>\xf093 </fn><tx> Kb"] 10
+    -- WIFI
+      , Run Network "" ["-t", "<fn=0>\xf019 </fn><rx> Kb  <fn=0>\xf093 </fn><tx> Kb"] 10
+    -- CPU M
+      , Run MultiCpu ["-t", " <total0> %   <total1> %   <total2> %   <total3> %   <total4> %   <total5> %","-L","10","-H","50","-l","#98c379","-n","#d19a66","-h","#ff6c6b"] 10 --   <total4>%   <total5>%   <total6>%   <total7>%
+    -- CPU %
+      -- , Run Cpu ["-t", "<total> %","-L","10","-H","50","-l","#b5bd68","-n","#d19a66","-h","#cc6666"] 10
+    -- CPUTEMP °C
+      , Run CoreTemp ["-t", "<core0> °C", "-L", "45", "-H", "75", "-l", "#b5bd68", "-n", "#d19a66", "-h", "#cc6666"] 20
+    -- RAM
+      , Run Memory ["-t", "<used> MB<usedratio> %","-H","85","-L","10","-l","#b5bd68","-n","#d19a66","-h","#cc6666"] 20
+    -- HDD
+      , Run DiskU [("/", "ROOT : <free>")] ["-m", "1", "-p", "3", "#cc6666"] 20
+    
+  ]
+
+  , sepChar = "%"
+  , alignSep = "}{"
+  , template = 
+    
+    "\
+
+      \<action=`apps`>%gentoo-icon%</action>\
+      \%separator%\
+      \%UnsafeStdinReader%\
+      
+      \}{\
+      
+      \%separator%<fc=#b5bd68><box type=Bottom width=1 mb=2>%lan-icon% %eno1%</box></fc>\
+      -- \%separator%<fc=#b5bd68><box type=Bottom width=1 mb=2>%wifi-icon% %%</box></fc>\
+      \%separator%<fc=#d19a66><box type=Bottom width=1 mb=2>%cpu-icon% %multicpu%</box></fc>\
+      \%separator%<fc=#81a2be><box type=Bottom width=1 mb=2>%tem-icon% %coretemp%</box></fc>\
+      \%separator%<fc=#cc6666><box type=Bottom width=1 mb=2>%ram-icon% %memory%</box></fc>\
+      \%separator%<fc=#81a2be><box type=Bottom width=1 mb=2>%hdd-icon% %disku%</box></fc>\
+      \%separator%\
+    \"
+
+}
