@@ -1,17 +1,17 @@
--- Realist's Xmonad Desktop (c) 2021 -> ~/.config/xmobar/xmobarrc0
+-- Lotrando's Xmonad Desktop (c) 2021 -> ~/.config/xmobar/xmobarrc0
 
 Config 
 
 {
-    font            = "xft:Ubuntu Nerd Font:weight=bold:pixelsize=12:antialias=true:hinting=true"
+    font            = "Ubuntu Nerd Font Semibold 10"
   , additionalFonts =[
-                      "xft:Ubuntu Nerd Font:pixelsize=12:antialias=true:hinting=true"
-                     ,"xft:Ubuntu Nerd Font:pixelsize=14:antialias=true:hinting=true"
-                     ,"xft:Ubuntu Nerd Font:pixelsize=16:antialias=true:hinting=true"
+                      "Ubuntu Nerd Font 10"
+                     ,"Ubuntu Nerd Font 12"
+                     ,"Ubuntu Nerd Font 14"
                      ]
   , bgColor         = "#031321"
   , fgColor         = "#ABB2BF"
-  , textOffset      = 15
+  , textOffset      = -1
   , position        = TopSize L 100 24
   , lowerOnStart    = True
   , hideOnStart     = False
@@ -48,9 +48,9 @@ Config
     -- KERNEL
       , Run Com "uname" ["-r"] "" 3600
     -- NETWORK
-      , Run Network "enp0s3" ["-t", "<fn=0>\xf019 </fn><rx> Kb  <fn=0>\xf093 </fn><tx> Kb"] 10
+      , Run Network "eno1" ["-t", "<fn=0>\xf019 </fn><rx> Kb  <fn=0>\xf093 </fn><tx> Kb"] 10
     -- WIFI
-      , Run Network "wlan0" ["-t", "<fn=0>\xf019 </fn><rx> Kb  <fn=0>\xf093 </fn><tx> Kb"] 10
+      , Run Network "" ["-t", "<fn=0>\xf019 </fn><rx> Kb  <fn=0>\xf093 </fn><tx> Kb"] 10
     -- KERNEL
       , Run Com "uname" ["-r"] "" 3600
     -- UPTIME
@@ -88,8 +88,8 @@ Config
       
       \}{\
       
-      \%separator%<fc=#b5bd68><box type=Bottom width=1 mb=2>%lan-icon% %enp0s3%</box></fc>\
-      -- \%separator%<fc=#b5bd68><box type=Bottom width=1 mb=2>%wifi-icon% %wlan0%</box></fc>\
+      \%separator%<fc=#b5bd68><box type=Bottom width=1 mb=2>%lan-icon% %eno1%</box></fc>\
+      -- \%separator%<fc=#b5bd68><box type=Bottom width=1 mb=2>%wifi-icon% %%</box></fc>\
       \%separator%<fc=#d19a66><box type=Bottom width=1 mb=2>%cpu-icon% %cpu%</box></fc>\
       \%separator%<fc=#81a2be><box type=Bottom width=1 mb=2>%tem-icon% %coretemp%</box></fc>\
       \%separator%<fc=#cc6666><box type=Bottom width=1 mb=2>%ram-icon% %memory%</box></fc>\

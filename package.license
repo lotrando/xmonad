@@ -1,4 +1,4 @@
-# RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
+# RXMD - Realist Xmonad Minimal Desktop
 # package.license file -> /etc/portage/package.license
 
 # APP-EDITORS
@@ -7,6 +7,12 @@ app-editors/vscode Microsoft-vscode
 
 # MEDIA-FONTS
 media-fonts/corefonts MSttfEULA
+
+# MEDIA-TV
+media-tv/plex-media-server Plex
+
+# NET-MISC
+net-misc/teamviewer TeamViewer
 
 # SYS-KERNEL
 sys-kernel/linux-firmware linux-fw-redistributable no-source-code
@@ -19,3 +25,6 @@ sys-firmware/nvidia-firmware NVIDIA-r2
 
 # WWW-CLIENT
 www-client/microsoft-edge-beta microsoft-edge
+
+# X11-DRIVERS
+x11-drivers/nvidia-drivers NVIDIA-r2

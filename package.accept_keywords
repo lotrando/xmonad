@@ -1,4 +1,4 @@
-# RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
+# RXMD - Realist Xmonad Minimal Desktop
 # package.accept_keywords file -> /etc/portage/package.accept_keywords
 
 # ADMIN-APP
@@ -7,6 +7,13 @@ app-admin/haskell-updater ~amd64
 # APP-EDITORS
 app-editors/sublime-text ~amd64
 app-editors/vscode ~amd64
+
+# APP-EMULATORS
+app-emulation/fs-uae ~amd64
+app-emulation/fs-uae-launcher ~amd64
+
+# APP-MISC
+app-misc/radeontop ~amd64
 
 # DEV-PHP
 dev-php/ca-bundle ~amd64
@@ -30,6 +37,7 @@ dev-php/xdebug-handler ~amd64
 
 # DEV-PYTHON
 dev-python/python-lhafile ~amd64
+dev-python/sphinx ~amd64
 
 # SYS-FIRMWARE
 sys-firmware/nvidia-firmware ~amd64
@@ -65,6 +73,7 @@ dev-haskell/base64-bytestring ~amd64
 dev-haskell/basement ~amd64
 dev-haskell/bifunctors ~amd64
 dev-haskell/binary ~amd64
+dev-haskell/bitvec ~amd64
 dev-haskell/blaze-builder ~amd64
 dev-haskell/blaze-html ~amd64
 dev-haskell/blaze-markup ~amd64
@@ -77,6 +86,7 @@ dev-haskell/bytestring-to-vector ~amd64
 dev-haskell/c2hs ~amd64
 dev-haskell/cabal ~amd64
 dev-haskell/cabal-doctest ~amd64
+dev-haskell/cairo ~amd64
 dev-haskell/call-stack ~amd64
 dev-haskell/case-insensitive ~amd64
 dev-haskell/cereal ~amd64
@@ -88,7 +98,14 @@ dev-haskell/configfile ~amd64
 dev-haskell/connection ~amd64
 dev-haskell/contravariant ~amd64
 dev-haskell/cookie ~amd64
+dev-haskell/crypton ~amd64
+dev-haskell/crypton-connection ~amd64
+dev-haskell/crypton-x509-validation ~amd64
+dev-haskell/crypton-x509-system ~amd64
+dev-haskell/crypton-x509-store ~amd64
+dev-haskell/crypton-x509 ~amd64
 dev-haskell/cryptonite ~amd64
+dev-haskell/data-array-byte ~amd64
 dev-haskell/data-default ~amd64
 dev-haskell/data-default-class ~amd64
 dev-haskell/data-default-instances-containers ~amd64
@@ -108,6 +125,7 @@ dev-haskell/executable-path ~amd64
 dev-haskell/extensible-exceptions ~amd64
 dev-haskell/fail ~amd64
 dev-haskell/fast-logger ~amd64
+dev-haskell/foldable1-classes-compat ~amd64
 dev-haskell/free ~amd64
 dev-haskell/generic-deriving ~amd64
 dev-haskell/ghc-paths ~amd64
@@ -129,10 +147,14 @@ dev-haskell/gi-gtk-hs ~amd64
 dev-haskell/gi-harfbuzz ~amd64
 dev-haskell/gi-pango ~amd64
 dev-haskell/gi-xlib ~amd64
+dev-haskell/generically ~amd64
+dev-haskell/glib ~amd64
+dev-haskell/gtk2hs-buildtools ~amd64
 dev-haskell/gtk-sni-tray ~amd64
 dev-haskell/gtk-strut ~amd64
 dev-haskell/happy ~amd64
 dev-haskell/hashable ~amd64
+dev-haskell/hashtables ~amd64
 dev-haskell/haskell-gi ~amd64
 dev-haskell/haskell-gi-base ~amd64
 dev-haskell/haskell-gi-overloading ~amd64
@@ -178,6 +200,7 @@ dev-haskell/old-locale ~amd64
 dev-haskell/old-time ~amd64
 dev-haskell/onetuple ~amd64
 dev-haskell/optparse-applicative ~amd64
+dev-haskell/pango ~amd64
 dev-haskell/parallel ~amd64
 dev-haskell/parsec ~amd64
 dev-haskell/parsec-numbers ~amd64
@@ -266,6 +289,7 @@ dev-haskell/zlib ~amd64
 
 # DEV-LANG
 dev-lang/ghc ~amd64
+dev-lang/php ~amd64
 
 # DEV-UTIL
 dev-util/ragel ~amd64
@@ -276,12 +300,25 @@ lxde-base/lxappearance ~amd64
 lxde-base/lxde-common ~amd64
 lxde-base/lxrandr ~amd64
 
+# NET-MISC
+net-misc/youtube-viewer ~amd64
+
 # MEDIA-VIDEO
+media-video/obs-studio ~amd64
 media-video/pipewire ~amd64
 media-video/wireplumber ~amd64
 
+# MEDIA-TV
+media-tv/plex-media-server ~amd64
+
+# SYS-APSS
+sys-apps/eza ~amd64
+
 # WWW-CLIENT
 www-client/microsoft-edge-beta ~amd64
+
+# X11-DRIVERS
+x11-drivers/nvidia-drivers ~amd64
 
 # X11-LIBS
 x11-libs/libfm ~amd64
@@ -299,3 +336,5 @@ x11-themes/notify-osd-icons ~amd64
 x11-wm/xmonad ~amd64
 x11-wm/xmonad-contrib ~amd64
 
+# NET-MISC
+net-misc/teamviewer ~amd64

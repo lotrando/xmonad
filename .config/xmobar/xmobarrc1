@@ -3,15 +3,15 @@
 Config 
 
 {
-    font            = "xft:Ubuntu Nerd Font:weight=bold:pixelsize=12:antialias=true:hinting=true"
+    font            = "Ubuntu Nerd Font Semibold 10"
   , additionalFonts =[
-                      "xft:Ubuntu Nerd Font:pixelsize=12:antialias=true:hinting=true"
-                     ,"xft:Ubuntu Nerd Font:pixelsize=14:antialias=true:hinting=true"
-                     ,"xft:Ubuntu Nerd Font:pixelsize=16:antialias=true:hinting=true"
+                      "Ubuntu Nerd Font 10"
+                     ,"Ubuntu Nerd Font 12"
+                     ,"Ubuntu Nerd Font 14"
                      ]
   , bgColor         = "#031321"
   , fgColor         = "#ABB2BF"
-  , textOffset      = 15
+  , textOffset      = -1
   , position        = Static { xpos = 0, ypos = 0, width = 1920, height = 24 }
   , lowerOnStart    = True
   , hideOnStart     = False

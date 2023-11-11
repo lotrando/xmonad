@@ -1,4 +1,2 @@
-# RXMD - Realist Xmonad Minimal Desktop LTO & GPO version
+# RXMD - Realist Xmonad Minimal Desktop
 # package.mask file -> /etc/portage/package.mask
-
-# // some custom masked package //

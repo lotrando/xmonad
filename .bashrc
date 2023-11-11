@@ -47,11 +47,11 @@ alias mv="mv -i"
 alias rm="rm -i"
 
 # Changing "ls" to "exa"
-alias ls='exa -al --color=always --group-directories-first'
-alias la='exa -a --color=always --group-directories-first'
-alias ll='exa -l --color=always --group-directories-first'
-alias lt='exa -aT --color=always --group-directories-first'
-alias l.='exa -a | egrep "^\."'
+alias ls='eza -al --color=always --group-directories-first'
+alias la='eza -a --color=always --group-directories-first'
+alias ll='eza -l --color=always --group-directories-first'
+alias lt='eza -aT --color=always --group-directories-first'
+alias l.='eza -a | egrep "^\."'
 
 # Portage
 alias install="sudo emerge -av"
@@ -77,4 +77,6 @@ alias newtag='git tag -a'
 # Laravel Artisan
 alias art='php artisan'
 alias server='art serve'
+
+# PHP Storm
 ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
