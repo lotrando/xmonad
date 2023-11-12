@@ -170,7 +170,7 @@ FFLAGS="${COMMON_FLAGS}"
 MAKE_OPTS="-j6"
 
 GENTOO_MIRRORS="https://mirror.dkm.cz/gentoo/"
-PORTAGE_BINHOST="http://94.113.203.183:55/xmonad-lto"
+PORTAGE_BINHOST="http://94.113.201.164:55/xmonad-lto"
 PORTDIR="/var/db/repos/gentoo"
 DISTDIR="/var/cache/distfiles"
 PKGDIR="/var/cache/binpkgs"
