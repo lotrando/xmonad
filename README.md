@@ -87,7 +87,7 @@ wget https://gentoo.c3sl.ufpr.br//releases/amd64/autobuilds/current-stage3-amd64
 ```
 
 ```
-tar xpf stage3-amd64-openrc-20230618T170201Z.tar.xz --xattrs-include='*.*' --numeric-owner
+tar xpf stage3-amd64-openrc-20240121T170320Z.tar.xz --xattrs-include='*.*' --numeric-owner
 ```
 
 ```
