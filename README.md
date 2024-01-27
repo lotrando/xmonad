@@ -77,13 +77,13 @@ cd /mnt/gentoo
 ```
 
 ```
-wget https://gentoo.osuosl.org//releases/amd64/autobuilds/current-stage3-amd64-openrc/stage3-amd64-openrc-20230618T170201Z.tar.xz
+wget https://distfiles.gentoo.org/releases/amd64/autobuilds/20240121T170320Z/stage3-amd64-openrc-20240121T170320Z.tar.xz
 ```
 
 #### another mirror
 
 ```
-wget https://gentoo.c3sl.ufpr.br//releases/amd64/autobuilds/current-stage3-amd64-openrc/stage3-amd64-openrc-20230618T170201Z.tar.xz
+wget https://gentoo.c3sl.ufpr.br//releases/amd64/autobuilds/current-stage3-amd64-openrc/stage3-amd64-openrc-20240121T170320Z.tar.xz
 ```
 
 ```
